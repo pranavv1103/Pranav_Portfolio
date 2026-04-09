@@ -70,7 +70,7 @@ export default function DSA() {
         <RevealStagger className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14">
           {dsaStats.map(({ label, value, prefix = '', suffix = '', color }) => (
             <RevealItem key={label}>
-              <div className="flex flex-col items-center py-8 px-4 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-indigo-500/25 transition-all duration-300 text-center group">
+              <div className="flex flex-col items-center py-8 px-4 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.45)] transition-all duration-300 text-center group">
                 <div className="text-4xl sm:text-5xl font-extrabold mb-2">
                   <span className={`${color === 'indigo' ? 'text-indigo-300' : color === 'cyan' ? 'text-cyan-300' : 'text-purple-300'}`}>
                     <AnimatedCounter target={value} prefix={prefix} suffix={suffix} />

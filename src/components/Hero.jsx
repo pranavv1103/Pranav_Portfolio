@@ -74,9 +74,9 @@ export default function Hero() {
       />
 
       {/* Ambient orbs */}
-      <Orb className="w-[700px] h-[700px] bg-indigo-600/[0.08] -top-40 -left-52" />
-      <Orb className="w-[500px] h-[500px] bg-violet-600/[0.06] top-1/2 -right-48" />
-      <Orb className="w-[350px] h-[350px] bg-cyan-500/[0.05] bottom-16 left-1/4" />
+      <Orb className="w-[700px] h-[700px] bg-indigo-600/[0.07] -top-40 -left-52" />
+      <Orb className="w-[500px] h-[500px] bg-violet-700/[0.05] top-1/2 -right-48" />
+      <Orb className="w-[300px] h-[300px] bg-indigo-600/[0.04] bottom-16 left-1/4" />
 
       {/* Top fade */}
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#07090f] to-transparent pointer-events-none" />
@@ -91,7 +91,7 @@ export default function Hero() {
           className="mb-7 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-medium text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 select-none"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)] animate-pulse" />
-          Open to full-time roles starting Summer 2026
+          Open to full-time roles
         </motion.div>
 
         {/* Name */}
@@ -106,9 +106,9 @@ export default function Hero() {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                'linear-gradient(135deg, #818cf8 0%, #67e8f9 40%, #c084fc 80%, #818cf8 100%)',
+                'linear-gradient(135deg, #a5b4fc 0%, #818cf8 50%, #7c3aed 100%)',
               backgroundSize: '200% auto',
-              animation: 'shimmer 4s linear infinite',
+              animation: 'shimmer 6s linear infinite',
             }}
           >
             Lalapeta
@@ -148,7 +148,7 @@ export default function Hero() {
         >
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-all duration-200 shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_50px_rgba(99,102,241,0.45)]"
+            className="group flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-all duration-200 shadow-[0_0_20px_rgba(99,102,241,0.22)] hover:shadow-[0_0_36px_rgba(99,102,241,0.35)]"
           >
             View Projects
             <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />

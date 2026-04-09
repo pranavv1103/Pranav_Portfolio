@@ -33,7 +33,7 @@ export default function Skills() {
             const c = colorMap[color]
             return (
               <RevealItem key={category}>
-                <div className="h-full p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] transition-colors duration-300 group">
+                <div className="h-full p-5 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-white/[0.11] shadow-[0_2px_16px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.45)] transition-all duration-300 group">
                   {/* Category header */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2 rounded-lg ${c.bg} border ${c.border}`}>
