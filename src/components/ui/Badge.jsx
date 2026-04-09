@@ -23,8 +23,12 @@ export function Badge({ children, color = 'default', className = '' }) {
 
 export function TechBadge({ children }) {
   return (
-    <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-white/[0.04] text-slate-400 border border-white/[0.07] hover:bg-indigo-500/[0.08] hover:text-indigo-300 hover:border-indigo-500/20 transition-all duration-200">
+    <motion.span
+      whileHover={{ scale: 1.06, y: -1 }}
+      transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-white/[0.04] text-slate-400 border border-white/[0.07] hover:bg-indigo-500/[0.1] hover:text-indigo-300 hover:border-indigo-500/25 hover:shadow-[0_0_14px_rgba(99,102,241,0.18)] transition-colors duration-200 cursor-default"
+    >
       {children}
-    </span>
+    </motion.span>
   )
 }

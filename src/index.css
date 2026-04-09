@@ -145,3 +145,36 @@
   0% { background-position: 200% center; }
   100% { background-position: -200% center; }
 }
+
+/* Slowly drifting grid */
+@keyframes grid-drift {
+  0%   { background-position: 0px 0px; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Soft radial pulse */
+@keyframes radial-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.6;  transform: scale(1.08); }
+}
+
+.animate-grid-drift {
+  animation: grid-drift 18s linear infinite;
+}
+
+.animate-radial-pulse {
+  animation: radial-pulse 6s ease-in-out infinite;
+}
+
+/* Glow border utility */
+.glow-border-indigo {
+  box-shadow: 0 0 0 1px rgba(99,102,241,0.2), 0 0 24px rgba(99,102,241,0.1);
+}
+
+/* Glass card premium */
+.glass-premium {
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  background: rgba(11,17,32,0.72);
+  border: 1px solid rgba(255,255,255,0.07);
+}

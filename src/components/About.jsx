@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Layers, Code2, Zap } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
+import { SpotlightCard } from './ui/SpotlightCard'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 
 const pillars = [
@@ -29,26 +30,46 @@ const colorMap = {
     bg: 'bg-indigo-500/10',
     border: 'border-indigo-500/20',
     text: 'text-indigo-400',
-    hover: 'hover:border-indigo-500/40 hover:bg-indigo-500/[0.07]',
+    hover: 'hover:border-indigo-500/40',
+    spotlight: 'rgba(99,102,241,0.07)',
+    glow: 'group-hover:shadow-[0_0_20px_rgba(99,102,241,0.12)]',
   },
   cyan: {
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/20',
     text: 'text-cyan-400',
-    hover: 'hover:border-cyan-500/40 hover:bg-cyan-500/[0.07]',
+    hover: 'hover:border-cyan-500/40',
+    spotlight: 'rgba(6,182,212,0.07)',
+    glow: 'group-hover:shadow-[0_0_20px_rgba(6,182,212,0.12)]',
   },
   purple: {
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
     text: 'text-purple-400',
-    hover: 'hover:border-purple-500/40 hover:bg-purple-500/[0.07]',
+    hover: 'hover:border-purple-500/40',
+    spotlight: 'rgba(168,85,247,0.07)',
+    glow: 'group-hover:shadow-[0_0_20px_rgba(168,85,247,0.12)]',
   },
 }
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 bg-[#07090f] section-glow">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative py-20 bg-[#07090f] overflow-hidden">
+      {/* Animated ambient orb */}
+      <motion.div
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-indigo-600/[0.04] blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 -left-32 w-[400px] h-[400px] rounded-full bg-purple-600/[0.03] blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.55, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+      />
+      {/* Section separator line */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="About"
           title="I build things that actually work."
@@ -77,7 +98,7 @@ export default function About() {
                 participation in weekly contests.
               </p>
 
-              <div className="mt-2 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07] flex items-start gap-4">
+              <div className="mt-2 p-5 rounded-xl bg-white/[0.025] border border-white/[0.07] hover:border-indigo-500/20 flex items-start gap-4 transition-colors duration-300 shadow-[0_2px_16px_rgba(0,0,0,0.3)]">
                 <div className="p-2.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 shrink-0">
                   <GraduationCap size={18} className="text-indigo-400" />
                 </div>
@@ -103,21 +124,26 @@ export default function About() {
                 const c = colorMap[color]
                 return (
                   <WaterfallItem key={title}>
-                  <motion.div
-                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.55)' }}
-                    transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className={`p-5 rounded-xl bg-white/[0.03] border ${c.border} ${c.hover} transition-colors duration-300 cursor-default`}
+                  <SpotlightCard
+                    spotlightColor={c.spotlight}
+                    className={`rounded-xl border ${c.border} ${c.hover} ${c.glow} bg-white/[0.025] shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300 cursor-default`}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className={`p-2.5 rounded-lg ${c.bg} border ${c.border} shrink-0`}>
-                        <Icon size={18} className={c.text} />
+                    <motion.div
+                      whileHover={{ y: -3 }}
+                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                      className="p-5"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`p-2.5 rounded-lg ${c.bg} border ${c.border} shrink-0 group-hover:shadow-[0_0_12px_currentColor] transition-shadow duration-300`}>
+                          <Icon size={18} className={c.text} />
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-semibold text-slate-200 mb-1.5">{title}</h3>
+                          <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-sm font-semibold text-slate-200 mb-1.5">{title}</h3>
-                        <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </SpotlightCard>
                   </WaterfallItem>
                 )
               })}

@@ -21,22 +21,24 @@ export const EASE_SOFT = [0.25, 0.46, 0.45, 0.94]   // quart out — gentle
 
 // ─── Base variants ─────────────────────────────────────────────────────────────
 const flowIn = {
-  hidden: { opacity: 0, y: 32, filter: 'blur(3px)' },
+  hidden: { opacity: 0, y: 36, scale: 0.98, filter: 'blur(5px)' },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     filter: 'blur(0px)',
-    transition: { duration: 0.72, ease: EASE_FLOW },
+    transition: { duration: 0.75, ease: EASE_FLOW },
   },
 }
 
 const cascadeItem = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(2px)' },
+  hidden: { opacity: 0, y: 28, scale: 0.97, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     filter: 'blur(0px)',
-    transition: { duration: 0.6, ease: EASE_FLOW },
+    transition: { duration: 0.65, ease: EASE_FLOW },
   },
 }
 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { X, Sparkles, ChevronRight, Zap } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
+import { SpotlightCard } from './ui/SpotlightCard'
 import { TechBadge } from './ui/Badge'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { projects } from '../data'
@@ -19,8 +20,8 @@ function TiltCard({ children, className, onClick }) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
-  const rotateX = useTransform(y, [-0.5, 0.5], [7, -7])
-  const rotateY = useTransform(x, [-0.5, 0.5], [-7, 7])
+  const rotateX = useTransform(y, [-0.5, 0.5], [10, -10])
+  const rotateY = useTransform(x, [-0.5, 0.5], [-10, 10])
   const springRotX = useSpring(rotateX, { stiffness: 250, damping: 30 })
   const springRotY = useSpring(rotateY, { stiffness: 250, damping: 30 })
 
@@ -153,7 +154,7 @@ function ProjectCard({ project, onClick }) {
   return (
     <TiltCard
       onClick={onClick}
-      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/20 transition-colors duration-300"
+      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.12)] transition-all duration-300"
       style={{ willChange: 'transform' }}
     >
       {/* Top accent bar */}
@@ -228,8 +229,12 @@ export default function Projects() {
   const [selected, setSelected] = useState(null)
 
   return (
-    <section id="projects" className="relative py-28 bg-[#07090f]">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/[0.1] rounded-full blur-3xl pointer-events-none" />
+    <section id="projects" className="relative py-20 bg-[#07090f] overflow-hidden">
+      <motion.div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/[0.1] rounded-full blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.06, 1], opacity: [0.6, 1, 0.6] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader

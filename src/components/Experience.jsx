@@ -1,15 +1,22 @@
 import { motion } from 'framer-motion'
 import { Briefcase, Calendar, MapPin, CheckCircle2 } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
+import { SpotlightCard } from './ui/SpotlightCard'
 import { TechBadge } from './ui/Badge'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { experience } from '../data'
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-28 bg-[#080c16]">
+    <section id="experience" className="relative py-20 bg-[#080c16] overflow-hidden">
       {/* Subtle top border glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
+      {/* Ambient orb */}
+      <motion.div
+        className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-indigo-600/[0.03] blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.35, 0.6, 0.35] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
@@ -37,10 +44,14 @@ export default function Experience() {
                       <div className="relative w-full h-full rounded-full bg-indigo-500 border-2 border-[#080c16] shadow-[0_0_10px_rgba(99,102,241,0.5)] group-hover:scale-125 transition-transform duration-300" />
                     </div>
 
+                    <SpotlightCard
+                      spotlightColor="rgba(99,102,241,0.07)"
+                      className="rounded-2xl"
+                    >
                     <motion.div
-                      whileHover={{ y: -2, boxShadow: '0 16px 48px rgba(0,0,0,0.5)' }}
+                      whileHover={{ y: -2, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}
                       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="p-6 sm:p-7 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300"
+                      className="p-6 sm:p-7 rounded-2xl bg-[#0b1120] border border-white/[0.06] group-hover:border-indigo-500/25 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300"
                     >
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
@@ -75,6 +86,7 @@ export default function Experience() {
                         {job.tech.map((t) => <TechBadge key={t}>{t}</TechBadge>)}
                       </div>
                     </motion.div>
+                    </SpotlightCard>
                   </div>
                 </WaterfallItem>
               ))}

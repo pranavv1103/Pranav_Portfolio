@@ -1,33 +1,36 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Award } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
+import { SpotlightCard } from './ui/SpotlightCard'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { education } from '../data'
 
 const degreeColors = [
   {
     gradient: 'from-indigo-500/20 via-purple-500/10 to-transparent',
-    border: 'border-indigo-500/25 hover:border-indigo-500/50',
+    border: 'border-indigo-500/25',
+    hoverBorder: 'group-hover:border-indigo-500/50',
     iconBg: 'bg-indigo-500/10 border-indigo-500/20',
     iconColor: 'text-indigo-400',
     gpaBadge: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20',
     dot: 'bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.7)]',
-    lineColor: 'from-indigo-500/40',
+    spotlight: 'rgba(99,102,241,0.07)',
   },
   {
     gradient: 'from-cyan-500/15 via-sky-500/8 to-transparent',
-    border: 'border-cyan-500/20 hover:border-cyan-500/45',
+    border: 'border-cyan-500/20',
+    hoverBorder: 'group-hover:border-cyan-500/45',
     iconBg: 'bg-cyan-500/10 border-cyan-500/20',
     iconColor: 'text-cyan-400',
     gpaBadge: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
     dot: 'bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.7)]',
-    lineColor: 'from-cyan-500/40',
+    spotlight: 'rgba(6,182,212,0.07)',
   },
 ]
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-28 bg-[#07090f]">
+    <section id="education" className="relative py-20 bg-[#07090f]">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/15 to-transparent" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,10 +61,14 @@ export default function Education() {
                       <div className={`relative w-full h-full rounded-full border-2 border-[#07090f] ${c.dot} group-hover:scale-125 transition-transform duration-300`} />
                     </div>
 
+                    <SpotlightCard
+                      spotlightColor={c.spotlight}
+                      className={`rounded-2xl border ${c.border} ${c.hoverBorder} transition-colors duration-300`}
+                    >
                     <motion.div
-                      whileHover={{ y: -3, boxShadow: '0 14px 48px rgba(0,0,0,0.5)' }}
+                      whileHover={{ y: -3, boxShadow: '0 14px 48px rgba(0,0,0,0.55)' }}
                       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-white/[0.03] border ${c.border} transition-colors duration-300`}
+                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-white/[0.03]`}
                     >
                       {/* Gradient accent */}
                       <div
@@ -109,6 +116,7 @@ export default function Education() {
                         </div>
                       </div>
                     </motion.div>
+                    </SpotlightCard>
                   </div>
                   </WaterfallItem>
                 )

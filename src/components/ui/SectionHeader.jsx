@@ -33,31 +33,20 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
   const titleAlignClass = align === 'left' ? 'justify-start' : 'justify-center'
 
   return (
-    <div className={`flex flex-col gap-3 mb-16 ${alignClass}`}>
+    <div className={`flex flex-col gap-3.5 mb-12 ${alignClass}`}>
       {eyebrow && (
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.div
+          initial={{ opacity: 0, y: 14, scale: 0.92 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="inline-flex items-center gap-2.5 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-400/80 uppercase"
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center gap-2"
         >
-          <motion.span
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-5 h-px bg-indigo-500/40 origin-right block"
-          />
-          {eyebrow}
-          <motion.span
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-5 h-px bg-indigo-500/40 origin-left block"
-          />
-        </motion.span>
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/[0.07] border border-indigo-500/20 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-400 uppercase shadow-[0_0_16px_rgba(99,102,241,0.08)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_6px_rgba(99,102,241,0.7)] animate-pulse" />
+            {eyebrow}
+          </span>
+        </motion.div>
       )}
 
       <motion.h2
@@ -79,7 +68,7 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.3, ease: 'easeOut' }}
-          className="max-w-xl text-slate-500 text-[0.9375rem] leading-relaxed"
+          className="max-w-xl text-slate-500/90 text-[0.9375rem] leading-relaxed"
         >
           {subtitle}
         </motion.p>
