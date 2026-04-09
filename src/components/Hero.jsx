@@ -38,12 +38,44 @@ function RotatingRole() {
   )
 }
 
-function Orb({ className }) {
-  return <div className={`absolute rounded-full blur-3xl pointer-events-none ${className}`} />
+function Orb({ className, dy = -20 }) {
+  return (
+    <motion.div
+      className={`absolute rounded-full blur-3xl pointer-events-none ${className}`}
+      animate={{ y: [0, dy, 0] }}
+      transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  )
+}
+
+const DOTS = [
+  { top: '12%', left: '7%',  w: 2.5, delay: 0 },
+  { top: '22%', left: '88%', w: 2,   delay: 1.1 },
+  { top: '45%', left: '4%',  w: 3,   delay: 2.3 },
+  { top: '68%', left: '90%', w: 2,   delay: 0.7 },
+  { top: '80%', left: '15%', w: 2.5, delay: 1.8 },
+  { top: '10%', left: '55%', w: 2,   delay: 3.0 },
+  { top: '58%', left: '75%', w: 3,   delay: 0.4 },
+  { top: '35%', left: '96%', w: 2,   delay: 2.0 },
+]
+
+function FloatingDots() {
+  return (
+    <>
+      {DOTS.map((d, i) => (
+        <motion.span
+          key={i}
+          className="absolute rounded-full bg-indigo-400/20 pointer-events-none"
+          style={{ top: d.top, left: d.left, width: d.w, height: d.w }}
+          animate={{ y: [0, -14, 0], opacity: [0.2, 0.55, 0.2] }}
+          transition={{ duration: 4.5 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: d.delay }}
+        />
+      ))}
+    </>
+  )
 }
 
 const statsData = [
-  { value: '4', label: 'Projects shipped' },
   { value: '650+', label: 'LeetCode solved' },
   { value: '3.97', label: 'GPA at UCF' },
   { value: '#119', label: 'Smart Interviews' },
@@ -65,18 +97,23 @@ export default function Hero() {
         }}
       />
       {/* Radial spotlight */}
-      <div
+      <motion.div
         className="absolute inset-0 pointer-events-none"
+        animate={{ opacity: [0.8, 1, 0.8] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.13) 0%, transparent 70%)',
+            'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%)',
         }}
       />
 
       {/* Ambient orbs */}
-      <Orb className="w-[700px] h-[700px] bg-indigo-600/[0.07] -top-40 -left-52" />
-      <Orb className="w-[500px] h-[500px] bg-violet-700/[0.05] top-1/2 -right-48" />
-      <Orb className="w-[300px] h-[300px] bg-indigo-600/[0.04] bottom-16 left-1/4" />
+      <Orb className="w-[700px] h-[700px] bg-indigo-600/[0.07] -top-40 -left-52" dy={-28} />
+      <Orb className="w-[500px] h-[500px] bg-violet-700/[0.05] top-1/2 -right-48" dy={22} />
+      <Orb className="w-[300px] h-[300px] bg-indigo-600/[0.04] bottom-16 left-1/4" dy={-16} />
+
+      {/* Floating particles */}
+      <FloatingDots />
 
       {/* Top fade */}
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#07090f] to-transparent pointer-events-none" />
@@ -175,7 +212,7 @@ export default function Hero() {
           </a>
 
           <a
-            href="https://linkedin.com/in/pranav-tej-lalapeta"
+            href="https://linkedin.com/in/pranavtejlalapeta"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 border border-white/[0.08] hover:border-white/20 hover:bg-white/5 transition-all duration-200"
@@ -198,15 +235,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.68 }}
-          className="w-full max-w-2xl grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/[0.07] bg-white/[0.025]"
+          className="w-full max-w-xl grid grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/[0.07] bg-white/[0.025]"
         >
           {statsData.map(({ value, label }) => (
-            <div key={label} className="px-4 py-5 text-center bg-white/[0.015] backdrop-blur-sm">
+            <motion.div
+              key={label}
+              whileHover={{ backgroundColor: 'rgba(99,102,241,0.07)' }}
+              transition={{ duration: 0.2 }}
+              className="px-4 py-5 text-center bg-white/[0.015] backdrop-blur-sm cursor-default"
+            >
               <div className="text-xl sm:text-2xl font-bold text-slate-100 tabular-nums mb-0.5">
                 {value}
               </div>
               <div className="text-[11px] text-slate-500 font-medium leading-tight">{label}</div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

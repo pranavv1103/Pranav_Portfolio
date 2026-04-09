@@ -248,40 +248,42 @@ export const codingBadges = [
 
 export const certifications = [
   {
-    title: 'AWS Cloud Practitioner Essentials',
-    issuer: 'Amazon Web Services',
+    category: 'Cloud and AI',
     icon: '☁️',
-    color: 'amber',
+    color: 'indigo',
+    items: [
+      { title: 'AWS Cloud Practitioner Essentials', issuer: 'Amazon Web Services' },
+      { title: 'AI Fundamentals', issuer: 'IBM SkillsBuild' },
+      { title: 'Career Essentials in Generative AI', issuer: 'Microsoft and LinkedIn' },
+    ],
   },
   {
-    title: 'Generative AI Essentials',
-    issuer: 'Industry Certification',
-    icon: '🤖',
-    color: 'purple',
-  },
-  {
-    title: 'Data Analytics with Python',
-    issuer: 'NPTEL (IIT)',
+    category: 'Data Science and Analytics',
     icon: '📊',
     color: 'cyan',
+    items: [
+      { title: 'Data Science for Engineers', issuer: 'NPTEL, IIT Madras' },
+      { title: 'Data Analytics with Python', issuer: 'NPTEL, IIT Roorkee' },
+    ],
   },
   {
-    title: 'Networking Academy',
-    issuer: 'Cisco',
-    icon: '🌐',
-    color: 'sky',
-  },
-  {
-    title: 'SmartCoder Certification',
-    issuer: 'Smart Interviews',
+    category: 'Programming and Competitive',
     icon: '💡',
-    color: 'indigo',
+    color: 'violet',
+    items: [
+      { title: 'SmartCoder Certificate', issuer: 'Smart Interviews' },
+      { title: 'Java Certification', issuer: 'HackerRank' },
+      { title: 'Python Certification', issuer: 'HackerRank' },
+    ],
   },
   {
-    title: 'NPTEL Certification',
-    issuer: 'IIT National Programme',
-    icon: '🎓',
-    color: 'emerald',
+    category: 'Web and Networking',
+    icon: '🌐',
+    color: 'slate',
+    items: [
+      { title: 'HTML and CSS Courses', issuer: 'Inmovidu' },
+      { title: 'Python, C, Advanced C and JavaScript Essentials', issuer: 'Cisco Networking Academy' },
+    ],
   },
 ]
 

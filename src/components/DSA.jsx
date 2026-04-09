@@ -70,14 +70,17 @@ export default function DSA() {
         <RevealStagger className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14">
           {dsaStats.map(({ label, value, prefix = '', suffix = '', color }) => (
             <RevealItem key={label}>
-              <div className="flex flex-col items-center py-8 px-4 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.45)] transition-all duration-300 text-center group">
+              <motion.div
+                whileHover={{ y: -4, scale: 1.03 }}
+                transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="flex flex-col items-center py-8 px-4 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-colors duration-300 text-center group">
                 <div className="text-4xl sm:text-5xl font-extrabold mb-2">
                   <span className={`${color === 'indigo' ? 'text-indigo-300' : color === 'cyan' ? 'text-cyan-300' : 'text-purple-300'}`}>
                     <AnimatedCounter target={value} prefix={prefix} suffix={suffix} />
                   </span>
                 </div>
                 <div className="text-sm text-slate-500 font-medium">{label}</div>
-              </div>
+              </motion.div>
             </RevealItem>
           ))}
         </RevealStagger>
@@ -93,14 +96,18 @@ export default function DSA() {
             const c = accentMap[color] ?? accentMap.indigo
             return (
               <RevealItem key={title}>
-                  <div className={`flex items-start gap-4 p-5 rounded-xl border ${c} transition-all duration-300 hover:brightness-125`}>
+                  <motion.div
+                    whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(0,0,0,0.5)' }}
+                    transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={`flex items-start gap-4 p-5 rounded-xl border ${c} transition-colors duration-300`}
+                  >
                   <div className="text-2xl shrink-0">{icon}</div>
                   <div>
                     <div className="text-sm font-bold text-slate-200">{title}</div>
                     <div className="text-xs text-slate-500 mt-0.5">{subtitle}</div>
                     <div className="text-xs text-slate-400 mt-1.5 leading-relaxed">{detail}</div>
                   </div>
-                </div>
+                </motion.div>
               </RevealItem>
             )
           })}

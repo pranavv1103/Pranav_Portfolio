@@ -102,8 +102,10 @@ export default function About() {
               const c = colorMap[color]
               return (
                 <RevealItem key={title}>
-                  <div
-                    className={`p-5 rounded-xl bg-white/[0.03] border ${c.border} ${c.hover} transition-all duration-300`}
+                  <motion.div
+                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.55)' }}
+                    transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={`p-5 rounded-xl bg-white/[0.03] border ${c.border} ${c.hover} transition-colors duration-300 cursor-default`}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`p-2.5 rounded-lg ${c.bg} border ${c.border} shrink-0`}>
@@ -114,7 +116,7 @@ export default function About() {
                         <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </RevealItem>
               )
             })}

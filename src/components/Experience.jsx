@@ -27,9 +27,19 @@ export default function Experience() {
               <RevealUp key={job.id} delay={i * 0.1}>
                 <div className="relative group">
                   {/* Timeline dot */}
-                  <div className="absolute -left-[2.35rem] md:-left-[3.35rem] top-5 w-3 h-3 rounded-full bg-indigo-500 border-2 border-[#080c16] shadow-[0_0_10px_rgba(99,102,241,0.5)] group-hover:scale-125 transition-transform duration-300" />
+                  <div className="absolute -left-[2.35rem] md:-left-[3.35rem] top-5 w-3 h-3">
+                    <motion.div
+                      animate={{ scale: [1, 2.4, 1], opacity: [0.45, 0, 0.45] }}
+                      transition={{ duration: 2.8, repeat: Infinity, ease: 'easeOut' }}
+                      className="absolute inset-0 rounded-full bg-indigo-500/50"
+                    />
+                    <div className="relative w-full h-full rounded-full bg-indigo-500 border-2 border-[#080c16] shadow-[0_0_10px_rgba(99,102,241,0.5)] group-hover:scale-125 transition-transform duration-300" />
+                  </div>
 
-                  <div className="p-6 sm:p-7 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 hover:bg-[#0d1428] shadow-[0_2px_16px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300">
+                  <motion.div
+                    whileHover={{ y: -2, boxShadow: '0 16px 48px rgba(0,0,0,0.5)' }}
+                    transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="p-6 sm:p-7 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300">
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
                       <div>
@@ -69,7 +79,7 @@ export default function Experience() {
                         <TechBadge key={t}>{t}</TechBadge>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </RevealUp>
             ))}

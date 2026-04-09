@@ -33,7 +33,10 @@ export default function Skills() {
             const c = colorMap[color]
             return (
               <RevealItem key={category}>
-                <div className="h-full p-5 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-white/[0.11] shadow-[0_2px_16px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.45)] transition-all duration-300 group">
+                <motion.div
+                  whileHover={{ y: -3, boxShadow: '0 14px 40px rgba(0,0,0,0.5)' }}
+                  transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="h-full p-5 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-white/[0.11] shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-colors duration-300 group">
                   {/* Category header */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2 rounded-lg ${c.bg} border ${c.border}`}>
@@ -54,7 +57,7 @@ export default function Skills() {
                       </motion.span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </RevealItem>
             )
           })}

@@ -20,8 +20,8 @@ const links = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/pranav-tej-lalapeta',
-    href: 'https://linkedin.com/in/pranav-tej-lalapeta',
+    value: 'linkedin.com/in/pranavtejlalapeta',
+    href: 'https://linkedin.com/in/pranavtejlalapeta',
     color: 'cyan',
   },
   {
@@ -61,9 +61,9 @@ export default function Contact() {
             Let's build something.
           </h2>
           <p className="text-slate-400 text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            I'm actively looking for full-time software engineering roles starting Summer 2026.
+            I'm actively looking for full-time software engineering roles.
             If you're building interesting systems and need someone who can work across the stack
-            with backend depth — I'd love to connect.
+            with backend depth, I'd love to connect.
           </p>
 
           {/* Primary CTA */}
@@ -96,7 +96,11 @@ export default function Contact() {
             {links.map(({ icon: Icon, label, value, href, color }) => {
               const c = colorMap[color]
               const inner = (
-                <div className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-200 ${c} group`}>
+                <motion.div
+                  whileHover={{ y: -2, x: 1 }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className={`flex items-center gap-4 p-4 rounded-xl border transition-colors duration-200 ${c} group`}
+                >
                   <div className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0">
                     <Icon size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
                   </div>
@@ -107,7 +111,7 @@ export default function Contact() {
                   {href && (
                     <ArrowUpRight size={13} className="ml-auto text-slate-600 group-hover:text-slate-400 transition-colors" />
                   )}
-                </div>
+                </motion.div>
               )
               return href ? (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer">{inner}</a>
