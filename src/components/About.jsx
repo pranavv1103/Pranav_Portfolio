@@ -136,7 +136,7 @@ export default function About() {
 
               <div className="flex items-center gap-2 text-sm text-slate-500">
                 <MapPin size={13} />
-                Orlando, FL · Open to remote and relocation
+                USA · Open to remote and relocation
               </div>
               </div>
             </WaterfallItem>

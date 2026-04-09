@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, Download, ArrowUpRight } from 'lucide-react'
+import { Mail, Github, Linkedin, MapPin, Download, ArrowUpRight, Send, User, MessageSquare } from 'lucide-react'
 import { SpotlightCard } from './ui/SpotlightCard'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 
@@ -28,7 +29,7 @@ const links = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Orlando, FL · Open to remote',
+    value: 'USA · Open to remote',
     href: null,
     color: 'emerald',
   },
@@ -42,6 +43,21 @@ const colorMap = {
 }
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [sent, setSent] = useState(false)
+
+  const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const { name, email, message } = form
+    const subject = encodeURIComponent(`Portfolio contact from ${name}`)
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    window.open(`mailto:pranavtej.lalapeta@gmail.com?subject=${subject}&body=${body}`, '_blank')
+    setSent(true)
+    setTimeout(() => setSent(false), 4000)
+  }
+
   return (
     <section id="contact" className="relative py-20 bg-[#07090f] overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
@@ -91,81 +107,154 @@ export default function Contact() {
         />
       </div>
 
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <WaterfallSection>
-          <span className="inline-flex items-center gap-2 text-xs font-mono font-medium tracking-widest text-indigo-400 uppercase mb-4">
-            <span className="w-6 h-[1px] bg-indigo-400/60" />
-            Contact
-            <span className="w-6 h-[1px] bg-indigo-400/60" />
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-100 leading-[1.1] mb-5">
-            Let's build something.
-          </h2>
-          <p className="text-slate-400 text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            I'm actively looking for full-time software engineering roles.
-            If you're building interesting systems and need someone who can work across the stack
-            with backend depth, I'd love to connect.
-          </p>
-
-          {/* Primary CTA */}
-          <motion.a
-            href="mailto:pranavtej.lalapeta@gmail.com"
-            whileHover={{ scale: 1.04, boxShadow: '0 0 60px rgba(99,102,241,0.55)' }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 shadow-[0_0_32px_rgba(99,102,241,0.35)] mb-8"
-          >
-            <Mail size={16} />
-            Send me an email
-            <ArrowUpRight size={14} />
-          </motion.a>
-
-          {/* Resume download */}
-          <div className="mb-12">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 border border-white/10 hover:border-white/25 px-5 py-2.5 rounded-xl transition-all duration-200 hover:bg-white/5"
-            >
-              <Download size={14} />
-              Download Resume
-            </a>
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 text-xs font-mono font-medium tracking-widest text-indigo-400 uppercase mb-4">
+              <span className="w-6 h-[1px] bg-indigo-400/60" />
+              Contact
+              <span className="w-6 h-[1px] bg-indigo-400/60" />
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-100 leading-[1.1] mb-4">
+              Let's build something.
+            </h2>
+            <p className="text-slate-400 text-base leading-relaxed max-w-xl mx-auto">
+              I'm actively looking for full-time software engineering roles.
+              If you're building interesting systems and need someone who can work across the stack
+              with backend depth, I'd love to connect.
+            </p>
           </div>
 
-          {/* Links grid */}
-          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left" stagger={0.1}>
-            {links.map(({ icon: Icon, label, value, href, color }) => {
-              const c = colorMap[color]
-              const inner = (
-                <SpotlightCard
-                  spotlightColor={c.spotlight}
-                  className={`flex items-center gap-4 p-4 rounded-xl border ${c.border} ${c.bg} ${c.hover} backdrop-blur-sm transition-all duration-200`}
-                >
-                  <motion.div
-                    whileHover={{ y: -2, x: 1 }}
-                    transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="flex items-center gap-4 w-full"
+          {/* Two-column layout: form + links */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+            {/* ── Left: Contact form ── */}
+            <WaterfallItem>
+              <SpotlightCard
+                spotlightColor="rgba(99,102,241,0.07)"
+                className="rounded-2xl border border-white/[0.07] bg-[#0b1120]/80 backdrop-blur-sm p-7"
+              >
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  {/* Name */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400 tracking-wide">
+                      <User size={12} className="text-indigo-400" />
+                      Your name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="What's your good name?"
+                      value={form.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-200 placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.04] transition-all duration-200"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400 tracking-wide">
+                      <Mail size={12} className="text-indigo-400" />
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="What's your email address?"
+                      value={form.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-200 placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.04] transition-all duration-200"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400 tracking-wide">
+                      <MessageSquare size={12} className="text-indigo-400" />
+                      Your Message
+                    </label>
+                    <textarea
+                      name="message"
+                      required
+                      placeholder="How can I help you?"
+                      rows={5}
+                      value={form.message}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-200 placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.04] transition-all duration-200 resize-none"
+                    />
+                  </div>
+
+                  {/* Send button */}
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 40px rgba(99,102,241,0.45)' }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 shadow-[0_0_28px_rgba(99,102,241,0.3)]"
                   >
-                    <div className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0">
-                      <Icon size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xs text-slate-600 font-medium mb-0.5">{label}</div>
-                      <div className="text-sm text-slate-300 font-medium truncate">{value}</div>
-                    </div>
-                    {href && (
-                      <ArrowUpRight size={13} className="text-slate-600 group-hover:text-slate-400 transition-colors shrink-0" />
+                    {sent ? (
+                      <>Opening mail client<span className="animate-pulse">…</span></>
+                    ) : (
+                      <><Send size={14} /> SEND MESSAGE</>
                     )}
-                  </motion.div>
-                </SpotlightCard>
-              )
-              return href ? (
-                <WaterfallItem key={label}><a href={href} target="_blank" rel="noopener noreferrer">{inner}</a></WaterfallItem>
-              ) : (
-                <WaterfallItem key={label}><div>{inner}</div></WaterfallItem>
-              )
-            })}
-          </WaterfallGroup>
+                  </motion.button>
+                </form>
+              </SpotlightCard>
+            </WaterfallItem>
+
+            {/* ── Right: Links + resume ── */}
+            <div className="flex flex-col gap-4">
+              <WaterfallGroup className="flex flex-col gap-3" stagger={0.1}>
+                {links.map(({ icon: Icon, label, value, href, color }) => {
+                  const c = colorMap[color]
+                  const inner = (
+                    <SpotlightCard
+                      spotlightColor={c.spotlight}
+                      className={`group flex items-center gap-4 p-4 rounded-xl border ${c.border} ${c.bg} ${c.hover} backdrop-blur-sm transition-all duration-200`}
+                    >
+                      <motion.div
+                        whileHover={{ y: -2, x: 1 }}
+                        transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="flex items-center gap-4 w-full"
+                      >
+                        <div className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0">
+                          <Icon size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs text-slate-600 font-medium mb-0.5">{label}</div>
+                          <div className="text-sm text-slate-300 font-medium truncate">{value}</div>
+                        </div>
+                        {href && (
+                          <ArrowUpRight size={13} className="text-slate-600 group-hover:text-slate-400 transition-colors shrink-0" />
+                        )}
+                      </motion.div>
+                    </SpotlightCard>
+                  )
+                  return href ? (
+                    <WaterfallItem key={label}><a href={href} target="_blank" rel="noopener noreferrer">{inner}</a></WaterfallItem>
+                  ) : (
+                    <WaterfallItem key={label}><div>{inner}</div></WaterfallItem>
+                  )
+                })}
+              </WaterfallGroup>
+
+              {/* Resume download */}
+              <WaterfallItem>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 border border-white/10 hover:border-white/25 px-5 py-2.5 rounded-xl transition-all duration-200 hover:bg-white/5 w-full justify-center"
+                >
+                  <Download size={14} />
+                  Download Resume
+                </a>
+              </WaterfallItem>
+            </div>
+
+          </div>
         </WaterfallSection>
       </div>
 

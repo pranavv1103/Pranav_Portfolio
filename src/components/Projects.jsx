@@ -162,17 +162,55 @@ function ProjectCard({ project, onClick }) {
       className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120]/85 backdrop-blur-sm border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.12)] transition-all duration-300"
       style={{ willChange: 'transform' }}
     >
-      {/* Top accent bar */}
-      <div className={`h-[2px] w-full bg-gradient-to-r ${project.gradient} opacity-55`} />
+      {/* Project image / visual banner */}
+      <div className={`relative h-44 w-full overflow-hidden bg-gradient-to-br ${project.gradient} flex-shrink-0`}>
+        {/* Dark overlay so it reads as a muted app screenshot */}
+        <div className="absolute inset-0 bg-[#07090f]/70" />
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+            backgroundSize: '22px 22px',
+          }}
+        />
+        {/* Mock browser chrome bar */}
+        <div className="absolute top-3 left-3 right-3 h-6 rounded-md bg-white/[0.05] border border-white/[0.07] flex items-center gap-1.5 px-2">
+          <span className="w-2 h-2 rounded-full bg-red-500/50" />
+          <span className="w-2 h-2 rounded-full bg-amber-500/50" />
+          <span className="w-2 h-2 rounded-full bg-green-500/50" />
+          <div className="flex-1 mx-2 h-3 rounded-sm bg-white/[0.06]" />
+        </div>
+        {/* Mock UI lines */}
+        <div className="absolute top-14 left-3 right-3 flex flex-col gap-2">
+          <div className="h-2 rounded-full bg-white/[0.09] w-2/3" />
+          <div className="h-2 rounded-full bg-white/[0.05] w-1/2" />
+          <div className="flex gap-2 mt-1">
+            <div className="h-6 w-16 rounded-md bg-white/[0.07] border border-white/[0.06]" />
+            <div className="h-6 w-12 rounded-md bg-white/[0.04] border border-white/[0.04]" />
+          </div>
+          <div className="h-px w-full bg-white/[0.05] mt-1" />
+          <div className="flex gap-2">
+            <div className="h-12 flex-1 rounded-lg bg-white/[0.04] border border-white/[0.05]" />
+            <div className="h-12 flex-1 rounded-lg bg-white/[0.04] border border-white/[0.05]" />
+          </div>
+        </div>
+        {/* Category label floating top-right */}
+        <div className="absolute top-11 right-3">
+          <span className={`text-[9px] font-mono font-bold tracking-widest uppercase px-2 py-1 rounded-full bg-gradient-to-r ${project.gradient} text-white/90 shadow-lg`}>
+            {project.category}
+          </span>
+        </div>
+        {/* Ambient glow from gradient */}
+        <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-12 bg-gradient-to-r ${project.gradient} opacity-20 blur-2xl`} />
+      </div>
 
       {/* Subtle hover glow overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative flex flex-col flex-1 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-[10px] font-mono text-slate-600 tracking-widest uppercase">
-            {project.category}
-          </span>
+        <div className="flex items-center justify-end mb-4">
           {project.featured && (
             <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-500 bg-white/[0.04] border border-white/[0.07] px-2 py-0.5 rounded-full">
               <Sparkles size={9} />
