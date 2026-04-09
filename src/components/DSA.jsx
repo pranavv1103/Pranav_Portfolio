@@ -182,12 +182,7 @@ export default function DSA() {
                   }`}
                 >
                   {active && (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
-                      <span className="absolute top-1.5 right-1.5 text-[9px] font-bold text-indigo-300 bg-indigo-500/20 border border-indigo-500/30 px-1.5 py-0.5 rounded-full tracking-wide leading-none">
-                        ACTIVE
-                      </span>
-                    </>
+                    <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
                   )}
                   {count && !active && (
                     <span className="absolute top-1.5 right-1.5 text-[9px] font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-1.5 py-0.5 rounded-full tracking-wide leading-none">

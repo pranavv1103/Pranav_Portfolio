@@ -236,10 +236,10 @@ export const achievements = [
 ]
 
 export const codingBadges = [
-  { label: '365 Days', icon: '🔥', active: true, desc: 'Coding every single day — active yearly streak' },
+  { label: '365 Days', icon: '🔥', active: true, desc: 'Coding every single day, active yearly streak' },
   { label: '100 Days', icon: '⚡', active: false, desc: '100-day problem solving streak milestone' },
   { label: '50 Days', icon: '🌟', active: false, count: 4, years: ['2022', '2023', '2024', '2025'], desc: '50-day consistency streak' },
-  { label: 'Diamond Rank', icon: '💎', active: false, desc: 'Smart Interviews Diamond — ranked #119 / 55,000' },
+  { label: 'Diamond Rank', icon: '💎', active: false, desc: 'Smart Interviews Diamond, ranked #119 of 55,000' },
   { label: 'Top 5%', icon: '🥇', active: false, desc: 'NPTEL national top 5 percentile' },
 ]
 

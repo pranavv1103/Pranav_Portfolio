@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react'
 
 // ─── Cascading entrance timing ────────────────────────────────────────────────
@@ -114,10 +114,28 @@ const statsData = [
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function Hero() {
+  // Mouse-parallax for background depth
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 })
+  const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 })
+  const parallaxX1 = useTransform(smoothX, [-1, 1], ['-12px', '12px'])
+  const parallaxY1 = useTransform(smoothY, [-1, 1], ['-10px', '10px'])
+  const parallaxX2 = useTransform(smoothX, [-1, 1], ['8px', '-8px'])
+  const parallaxY2 = useTransform(smoothY, [-1, 1], ['6px', '-6px'])
+
+  const handleMouseMove = (e) => {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    mouseX.set((e.clientX / w - 0.5) * 2)
+    mouseY.set((e.clientY / h - 0.5) * 2)
+  }
+
   return (
     <section
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#07090f]"
+      onMouseMove={handleMouseMove}
     >
       {/* Drifting grid background — two layers at different scales */}
       <div
@@ -158,24 +176,28 @@ export default function Hero() {
         }}
       />
 
-      {/* Ambient orbs — multi-axis drift */}
+      {/* Ambient orbs — multi-axis drift + mouse parallax */}
       <motion.div
         className="absolute w-[800px] h-[800px] rounded-full bg-indigo-600/[0.07] -top-52 -left-64 blur-3xl pointer-events-none"
+        style={{ x: parallaxX1, y: parallaxY1 }}
         animate={{ x: [0, 30, 0], y: [0, -30, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full bg-violet-700/[0.06] top-1/3 -right-56 blur-3xl pointer-events-none"
+        style={{ x: parallaxX2, y: parallaxY2 }}
         animate={{ x: [0, -25, 0], y: [0, 26, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute w-[350px] h-[350px] rounded-full bg-cyan-600/[0.04] bottom-16 left-1/4 blur-3xl pointer-events-none"
+        style={{ x: parallaxX1 }}
         animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute w-[250px] h-[250px] rounded-full bg-indigo-500/[0.05] top-1/4 right-1/4 blur-3xl pointer-events-none"
+        style={{ x: parallaxX2, y: parallaxY2 }}
         animate={{ x: [0, -12, 0], y: [0, 14, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -186,11 +208,33 @@ export default function Hero() {
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
       />
 
-      {/* Decorative rings */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      {/* Decorative rings — mouse-parallax depth */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        style={{ x: parallaxX2, y: parallaxY2 }}
+      >
         <DecorativeRing size={520} className="border-indigo-500/[0.05]" duration={55} />
         <DecorativeRing size={760} className="border-purple-500/[0.035]" duration={80} />
         <DecorativeRing size={1020} className="border-indigo-500/[0.02]" duration={110} />
+      </motion.div>
+
+      {/* 3D perspective floor grid — creates depth illusion */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-72 pointer-events-none overflow-hidden"
+        style={{ perspective: '600px' }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(99,102,241,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.8) 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            transform: 'rotateX(55deg) translateY(-20px)',
+            transformOrigin: 'bottom center',
+          }}
+        />
+        {/* Fade mask at top of the perspective grid */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07090f] via-transparent to-transparent" />
       </div>
 
       {/* Diagonal accent beams */}
