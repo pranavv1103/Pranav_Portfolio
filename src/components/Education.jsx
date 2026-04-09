@@ -30,7 +30,9 @@ const degreeColors = [
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-20 bg-[#07090f]">
+    <section id="education" className="relative py-20 bg-[#07090f] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/15 to-transparent" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +70,7 @@ export default function Education() {
                     <motion.div
                       whileHover={{ y: -3, boxShadow: '0 14px 48px rgba(0,0,0,0.55)' }}
                       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-white/[0.03]`}
+                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm`}
                     >
                       {/* Gradient accent */}
                       <div

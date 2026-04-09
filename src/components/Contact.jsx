@@ -45,6 +45,8 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-20 bg-[#07090f] overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
 
       {/* Animated glow */}
       <motion.div
@@ -103,7 +105,7 @@ export default function Contact() {
               const inner = (
                 <SpotlightCard
                   spotlightColor={c.spotlight}
-                  className={`flex items-center gap-4 p-4 rounded-xl border ${c.border} ${c.bg} ${c.hover} transition-all duration-200`}
+                  className={`flex items-center gap-4 p-4 rounded-xl border ${c.border} ${c.bg} ${c.hover} backdrop-blur-sm transition-all duration-200`}
                 >
                   <motion.div
                     whileHover={{ y: -2, x: 1 }}

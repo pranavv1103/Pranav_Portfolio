@@ -21,6 +21,8 @@ const colorMap = {
 export default function Skills() {
   return (
     <section id="skills" className="relative py-20 bg-[#080c16] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
       {/* Animated orb */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-indigo-600/[0.025] blur-3xl pointer-events-none"
@@ -45,7 +47,7 @@ export default function Skills() {
                 <WaterfallItem key={category}>
                 <SpotlightCard
                   spotlightColor={c.spotlight}
-                  className={`h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] ${c.hoverBorder} shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
+                  className={`h-full rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm border border-white/[0.06] ${c.hoverBorder} shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
                 >
                   <motion.div
                     whileHover={{ y: -3, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}

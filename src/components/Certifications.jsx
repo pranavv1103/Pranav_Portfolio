@@ -50,7 +50,9 @@ const colorTokens = {
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-20 bg-[#080c16]">
+    <section id="certifications" className="relative py-20 bg-[#080c16] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/15 to-transparent" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,10 +67,10 @@ export default function Certifications() {
             {certifications.map(({ category, icon, color, items }) => {
               const c = colorTokens[color] ?? colorTokens.indigo
               return (
-                <WaterfallItem key={category}>
+                <WaterfallItem key={category} className="h-full">
                 <SpotlightCard
                   spotlightColor={c.spotlight}
-                  className={`rounded-2xl border ${c.border} ${c.hoverBorder} bg-[#0b1120] shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
+                  className={`h-full rounded-2xl border ${c.border} ${c.hoverBorder} bg-[#0b1120]/80 backdrop-blur-sm shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
                 >
                 <motion.div
                   whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(0,0,0,0.5)' }}

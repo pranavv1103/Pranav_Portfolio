@@ -46,7 +46,8 @@ const accentMap = {
 
 export default function DSA() {
   return (
-    <section id="dsa" className="relative py-20 bg-[#07090f]">
+    <section id="dsa" className="relative py-20 bg-[#07090f] overflow-hidden">
+      <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,15 +103,15 @@ export default function DSA() {
             {achievements.map(({ title, subtitle, detail, icon, color }) => {
               const c = accentMap[color] ?? accentMap.indigo
               return (
-                <WaterfallItem key={title}>
+                <WaterfallItem key={title} className="h-full">
                   <SpotlightCard
                     spotlightColor={c.spotlight}
-                    className={`rounded-xl border ${c.card} ${c.hover} transition-all duration-300`}
+                    className={`h-full rounded-xl border ${c.card} ${c.hover} transition-all duration-300`}
                   >
                   <motion.div
                     whileHover={{ y: -3, boxShadow: '0 14px 40px rgba(0,0,0,0.5)' }}
                     transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-start gap-4 p-5"
+                    className="flex items-start gap-4 p-5 h-full"
                   >
                     <div className="text-2xl shrink-0 mt-0.5">{icon}</div>
                     <div>

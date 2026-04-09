@@ -9,6 +9,8 @@ import { experience } from '../data'
 export default function Experience() {
   return (
     <section id="experience" className="relative py-20 bg-[#080c16] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
       {/* Subtle top border glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
       {/* Ambient orb */}
@@ -51,7 +53,7 @@ export default function Experience() {
                     <motion.div
                       whileHover={{ y: -2, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}
                       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="p-6 sm:p-7 rounded-2xl bg-[#0b1120] border border-white/[0.06] group-hover:border-indigo-500/25 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300"
+                      className="p-6 sm:p-7 rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm border border-white/[0.06] group-hover:border-indigo-500/25 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300"
                     >
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">

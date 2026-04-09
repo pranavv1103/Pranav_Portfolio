@@ -46,7 +46,7 @@ export function SpotlightCard({
         style={{ background }}
       />
       {/* Content sits above the spotlight */}
-      <div className="relative z-[2]">{children}</div>
+      <div className="relative z-[2] h-full">{children}</div>
     </div>
   )
 }

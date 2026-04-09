@@ -10,6 +10,7 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import ScrollProgress from './components/ui/ScrollProgress'
 import CursorGlow from './components/ui/CursorGlow'
+import { SectionDivider } from './components/ui/SectionDivider'
 
 export default function App() {
   return (
@@ -19,13 +20,21 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <SectionDivider />
         <About />
+        <SectionDivider color="purple" />
         <Education />
+        <SectionDivider color="cyan" />
         <Experience />
+        <SectionDivider />
         <Projects />
+        <SectionDivider color="purple" />
         <Skills />
+        <SectionDivider color="cyan" />
         <DSA />
+        <SectionDivider />
         <Certifications />
+        <SectionDivider color="purple" />
         <Contact />
       </main>
     </div>

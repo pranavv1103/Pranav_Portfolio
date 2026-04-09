@@ -55,6 +55,8 @@ const colorMap = {
 export default function About() {
   return (
     <section id="about" className="relative py-20 bg-[#07090f] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-40 pointer-events-none" />
       {/* Animated ambient orb */}
       <motion.div
         className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-indigo-600/[0.04] blur-3xl pointer-events-none"
@@ -126,7 +128,7 @@ export default function About() {
                   <WaterfallItem key={title}>
                   <SpotlightCard
                     spotlightColor={c.spotlight}
-                    className={`rounded-xl border ${c.border} ${c.hover} ${c.glow} bg-white/[0.025] shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300 cursor-default`}
+                    className={`rounded-xl border ${c.border} ${c.hover} ${c.glow} shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300 cursor-default bg-[#0b1120]/80 backdrop-blur-sm`}
                   >
                     <motion.div
                       whileHover={{ y: -3 }}

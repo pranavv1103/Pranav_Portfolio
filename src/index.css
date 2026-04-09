@@ -178,3 +178,109 @@
   background: rgba(11,17,32,0.72);
   border: 1px solid rgba(255,255,255,0.07);
 }
+
+/* Gradient border card wrapper */
+.card-gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(255,255,255,0.04) 40%, rgba(139,92,246,0.12) 100%);
+}
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(6,182,212,0.2) 50%, rgba(139,92,246,0.3) 100%);
+  background-size: 300% 300%;
+  animation: border-spin 6s ease infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card-gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Animated aurora gradient background */
+@keyframes aurora-shift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+.animate-aurora {
+  background-size: 400% 400%;
+  animation: aurora-shift 20s ease infinite;
+}
+
+/* Slow orbit rotation for decorative rings */
+@keyframes orbit-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-orbit-slow {
+  animation: orbit-slow 40s linear infinite;
+}
+.animate-orbit-reverse {
+  animation: orbit-slow 55s linear infinite reverse;
+}
+
+/* Beam sweep across hero */
+@keyframes beam-x {
+  0%   { transform: translateX(-100%) scaleX(0.5); opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateX(200vw) scaleX(0.5); opacity: 0; }
+}
+.animate-beam {
+  animation: beam-x 8s ease-in-out infinite;
+}
+
+/* Gradient pulse for glowing borders */
+@keyframes glow-border-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(99,102,241,0.15), 0 0 20px rgba(99,102,241,0.06); }
+  50%       { box-shadow: 0 0 0 1px rgba(99,102,241,0.30), 0 0 40px rgba(99,102,241,0.12), 0 0 80px rgba(99,102,241,0.04); }
+}
+.animate-glow-border {
+  animation: glow-border-pulse 4s ease-in-out infinite;
+}
+
+/* Floating‑up for particles */
+@keyframes float-up {
+  0%   { transform: translateY(0) scale(1);    opacity: 0.15; }
+  50%  { transform: translateY(-24px) scale(1.2); opacity: 0.45; }
+  100% { transform: translateY(0) scale(1);    opacity: 0.15; }
+}
+
+/* Dot pattern + grid helpers */
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(99,102,241,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.bg-hex-pattern {
+  background-image:
+    radial-gradient(rgba(99,102,241,0.08) 1px, transparent 1px),
+    radial-gradient(rgba(99,102,241,0.05) 1px, transparent 1px);
+  background-size: 40px 40px, 20px 20px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* Shimmer sweep on text or elements */
+@keyframes shimmer-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.animate-shimmer-text {
+  background-size: 200% auto;
+  animation: shimmer-sweep 4s linear infinite;
+}
+
+/* Scan line for hero */
+@keyframes scan-line {
+  0%   { top: -4px; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+.animate-scan {
+  animation: scan-line 12s linear infinite;
+}

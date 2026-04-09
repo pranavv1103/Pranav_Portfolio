@@ -51,12 +51,24 @@ function RotatingRole() {
 }
 
 // ─── Animated ambient orbs ────────────────────────────────────────────────────
-function Orb({ className, dy = -20 }) {
+function Orb({ className, dy = -20, duration = 16 }) {
   return (
     <motion.div
       className={`absolute rounded-full blur-3xl pointer-events-none ${className}`}
       animate={{ y: [0, dy, 0] }}
-      transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+      transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  )
+}
+
+// ─── Decorative ring ─────────────────────────────────────────────────────────
+function DecorativeRing({ size, className, duration = 40 }) {
+  return (
+    <motion.div
+      className={`absolute rounded-full border pointer-events-none ${className}`}
+      style={{ width: size, height: size, marginLeft: -size / 2, marginTop: -size / 2 }}
+      animate={{ rotate: 360 }}
+      transition={{ duration, repeat: Infinity, ease: 'linear' }}
     />
   )
 }
@@ -71,6 +83,10 @@ const DOTS = [
   { top: '9%',  left: '54%', w: 2,   delay: 3.1 },
   { top: '57%', left: '76%', w: 3,   delay: 0.3 },
   { top: '34%', left: '97%', w: 2,   delay: 2.1 },
+  { top: '62%', left: '45%', w: 1.5, delay: 1.5 },
+  { top: '28%', left: '32%', w: 2,   delay: 4.0 },
+  { top: '88%', left: '68%', w: 1.5, delay: 2.8 },
+  { top: '5%',  left: '78%', w: 2,   delay: 3.5 },
 ]
 
 function FloatingDots() {
@@ -81,8 +97,8 @@ function FloatingDots() {
           key={i}
           className="absolute rounded-full bg-indigo-400/25 pointer-events-none"
           style={{ top: d.top, left: d.left, width: d.w, height: d.w }}
-          animate={{ y: [0, -16, 0], opacity: [0.18, 0.5, 0.18] }}
-          transition={{ duration: 5 + i * 0.45, repeat: Infinity, ease: 'easeInOut', delay: d.delay }}
+          animate={{ y: [0, -18, 0], opacity: [0.15, 0.5, 0.15] }}
+          transition={{ duration: 5 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: d.delay }}
         />
       ))}
     </>
@@ -103,30 +119,70 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#07090f]"
     >
-      {/* Grid background */}
+      {/* Drifting grid background */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] pointer-events-none animate-grid-drift"
         style={{
           backgroundImage:
             'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
-      {/* Radial spotlight */}
+
+      {/* Radial spotlight — slow breathing */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: [0.8, 1, 0.8] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%)',
+            'radial-gradient(ellipse 85% 65% at 50% -5%, rgba(99,102,241,0.18) 0%, transparent 70%)',
+        }}
+      />
+
+      {/* Secondary deep glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 50% 40% at 50% 100%, rgba(139,92,246,0.08) 0%, transparent 70%)',
         }}
       />
 
       {/* Ambient orbs */}
-      <Orb className="w-[700px] h-[700px] bg-indigo-600/[0.07] -top-40 -left-52" dy={-28} />
-      <Orb className="w-[500px] h-[500px] bg-violet-700/[0.05] top-1/2 -right-48" dy={22} />
-      <Orb className="w-[300px] h-[300px] bg-indigo-600/[0.04] bottom-16 left-1/4" dy={-16} />
+      <Orb className="w-[800px] h-[800px] bg-indigo-600/[0.07] -top-52 -left-64" dy={-30} duration={18} />
+      <Orb className="w-[600px] h-[600px] bg-violet-700/[0.06] top-1/3 -right-56" dy={26} duration={14} />
+      <Orb className="w-[350px] h-[350px] bg-cyan-600/[0.04] bottom-16 left-1/4" dy={-18} duration={20} />
+      <Orb className="w-[250px] h-[250px] bg-indigo-500/[0.05] top-1/4 right-1/4" dy={14} duration={12} />
+
+      {/* Decorative rings */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <DecorativeRing size={520} className="border-indigo-500/[0.05]" duration={55} />
+        <DecorativeRing size={760} className="border-purple-500/[0.035]" duration={80} />
+        <DecorativeRing size={1020} className="border-indigo-500/[0.02]" duration={110} />
+      </div>
+
+      {/* Diagonal accent beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-72 bg-gradient-to-b from-transparent via-indigo-500/18 to-transparent"
+          style={{ top: '8%', left: '72%', rotate: '22deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.25, 0.65, 0.25] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+        />
+        <motion.div
+          className="absolute w-px h-56 bg-gradient-to-b from-transparent via-purple-500/15 to-transparent"
+          style={{ top: '28%', left: '18%', rotate: '-18deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+        <motion.div
+          className="absolute w-px h-40 bg-gradient-to-b from-transparent via-cyan-500/12 to-transparent"
+          style={{ bottom: '20%', right: '22%', rotate: '12deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.15, 0.4, 0.15] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+        />
+      </div>
 
       {/* Floating particles */}
       <FloatingDots />
@@ -201,10 +257,15 @@ export default function Hero() {
         >
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-all duration-200 shadow-[0_0_20px_rgba(99,102,241,0.22)] hover:shadow-[0_0_36px_rgba(99,102,241,0.35)]"
+            className="group relative flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm text-white overflow-hidden transition-all duration-300 shadow-[0_0_24px_rgba(99,102,241,0.28)] hover:shadow-[0_0_44px_rgba(99,102,241,0.48)]"
+            style={{
+              background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+            }}
           >
+            {/* Shimmer overlay */}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             View Projects
-            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight size={15} className="relative group-hover:translate-x-1 transition-transform duration-200" />
           </button>
 
           <a
@@ -251,21 +312,31 @@ export default function Hero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.68 }}
-          className="w-full max-w-xl grid grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/[0.07] bg-white/[0.025]"
+          className="w-full max-w-xl"
         >
-          {statsData.map(({ value, label }) => (
-            <motion.div
-              key={label}
-              whileHover={{ backgroundColor: 'rgba(99,102,241,0.07)' }}
-              transition={{ duration: 0.2 }}
-              className="px-4 py-5 text-center bg-white/[0.015] backdrop-blur-sm cursor-default"
-            >
-              <div className="text-xl sm:text-2xl font-bold text-slate-100 tabular-nums mb-0.5">
-                {value}
-              </div>
-              <div className="text-[11px] text-slate-500 font-medium leading-tight">{label}</div>
-            </motion.div>
-          ))}
+          {/* Gradient border wrapper */}
+          <div className="p-[1px] rounded-2xl bg-gradient-to-r from-indigo-500/20 via-purple-500/10 to-cyan-500/15">
+            <div className="grid grid-cols-3 gap-px rounded-[calc(1rem-1px)] overflow-hidden bg-white/[0.015]">
+              {statsData.map(({ value, label }) => (
+                <motion.div
+                  key={label}
+                  whileHover={{ backgroundColor: 'rgba(99,102,241,0.08)' }}
+                  transition={{ duration: 0.2 }}
+                  className="px-4 py-5 text-center bg-[#0d1221]/80 backdrop-blur-sm cursor-default"
+                >
+                  <div className="text-xl sm:text-2xl font-bold tabular-nums mb-0.5"
+                    style={{
+                      background: 'linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}>
+                    {value}
+                  </div>
+                  <div className="text-[11px] text-slate-500 font-medium leading-tight">{label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
 

@@ -69,9 +69,12 @@ function ProjectModal({ project, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97, y: 8 }}
         transition={{ duration: 0.24, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#0b1222] border border-white/[0.07] shadow-[0_48px_100px_rgba(0,0,0,0.7),0_0_0_1px_rgba(99,102,241,0.07)]"
+        className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-[0_48px_100px_rgba(0,0,0,0.7)]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Gradient border wrapper */}
+        <div className="p-[1px] rounded-2xl bg-gradient-to-br from-indigo-500/30 via-white/[0.04] to-purple-500/20">
+        <div className="rounded-[calc(1rem-1px)] bg-[#0b1222] border border-white/[0.04] overflow-hidden">
         {/* Header */}
         <div className={`relative h-32 bg-gradient-to-br ${project.gradient} rounded-t-2xl overflow-hidden`}>
           <div className="absolute inset-0 bg-[#0b1222]/75" />
@@ -145,6 +148,8 @@ function ProjectModal({ project, onClose }) {
             </div>
           </div>
         </div>
+        </div>{/* inner dark bg */}
+        </div>{/* gradient border wrapper */}
       </motion.div>
     </motion.div>
   )
@@ -154,7 +159,7 @@ function ProjectCard({ project, onClick }) {
   return (
     <TiltCard
       onClick={onClick}
-      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.12)] transition-all duration-300"
+      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120]/85 backdrop-blur-sm border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.12)] transition-all duration-300"
       style={{ willChange: 'transform' }}
     >
       {/* Top accent bar */}
@@ -230,6 +235,8 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative py-20 bg-[#07090f] overflow-hidden">
+      {/* Dot pattern background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/[0.1] rounded-full blur-3xl pointer-events-none"
         animate={{ scale: [1, 1.06, 1], opacity: [0.6, 1, 0.6] }}
