@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeader } from './ui/SectionHeader'
-import { RevealUp, RevealStagger, RevealItem } from './ui/Reveal'
-import { dsaStats, achievements, codingBadges } from '../data'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
+import { dsaStats, achievements } from '../data'
 
 function AnimatedCounter({ target, prefix = '', suffix = '' }) {
   const [count, setCount] = useState(0)
@@ -12,46 +12,35 @@ function AnimatedCounter({ target, prefix = '', suffix = '' }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true
-          const duration = 1800
           const steps = 60
           const increment = target / steps
           let current = 0
           const timer = setInterval(() => {
             current += increment
-            if (current >= target) {
-              setCount(target)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(current))
-            }
-          }, duration / steps)
+            if (current >= target) { setCount(target); clearInterval(timer) }
+            else setCount(Math.floor(current))
+          }, 1800 / steps)
         }
       },
       { threshold: 0.3 }
     )
-
     observer.observe(el)
     return () => observer.disconnect()
   }, [target])
 
-  return (
-    <span ref={ref} className="tabular-nums">
-      {prefix}{count}{suffix}
-    </span>
-  )
+  return <span ref={ref} className="tabular-nums">{prefix}{count}{suffix}</span>
 }
 
 const accentMap = {
-  indigo: 'bg-indigo-500/10 border-indigo-500/25 text-indigo-300',
-  cyan:   'bg-cyan-500/10   border-cyan-500/25   text-cyan-300',
-  purple: 'bg-purple-500/10 border-purple-500/25 text-purple-300',
-  amber:  'bg-amber-500/10  border-amber-500/25  text-amber-300',
-  emerald:'bg-emerald-500/10 border-emerald-500/25 text-emerald-300',
+  indigo:  { card: 'bg-indigo-500/[0.06] border-indigo-500/20', num: 'text-indigo-300', hover: 'hover:border-indigo-500/40' },
+  cyan:    { card: 'bg-cyan-500/[0.06]   border-cyan-500/20',   num: 'text-cyan-300',   hover: 'hover:border-cyan-500/40' },
+  purple:  { card: 'bg-purple-500/[0.06] border-purple-500/20', num: 'text-purple-300', hover: 'hover:border-purple-500/40' },
+  amber:   { card: 'bg-amber-500/[0.06]  border-amber-500/20',  num: 'text-amber-300',  hover: 'hover:border-amber-500/40' },
+  emerald: { card: 'bg-emerald-500/[0.06] border-emerald-500/20', num: 'text-emerald-300', hover: 'hover:border-emerald-500/40' },
 }
 
 export default function DSA() {
@@ -61,94 +50,66 @@ export default function DSA() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="DSA & Achievements"
+          eyebrow="DSA and Achievements"
           title="Consistency over cleverness."
-          subtitle="Problem solving is a discipline. Here's the track record."
+          subtitle="Problem solving is a discipline. Here is the track record."
         />
 
-        {/* Stat counters */}
-        <RevealStagger className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14">
-          {dsaStats.map(({ label, value, prefix = '', suffix = '', color }) => (
-            <RevealItem key={label}>
-              <motion.div
-                whileHover={{ y: -4, scale: 1.03 }}
-                transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="flex flex-col items-center py-8 px-4 rounded-2xl bg-[#0b1120] border border-white/[0.06] hover:border-indigo-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-colors duration-300 text-center group">
-                <div className="text-4xl sm:text-5xl font-extrabold mb-2">
-                  <span className={`${color === 'indigo' ? 'text-indigo-300' : color === 'cyan' ? 'text-cyan-300' : 'text-purple-300'}`}>
-                    <AnimatedCounter target={value} prefix={prefix} suffix={suffix} />
-                  </span>
-                </div>
-                <div className="text-sm text-slate-500 font-medium">{label}</div>
-              </motion.div>
-            </RevealItem>
-          ))}
-        </RevealStagger>
+        {/* Waterfall: header -> stats -> recognitions label -> achievement cards */}
+        <WaterfallSection stagger={0.14}>
 
-        {/* Achievements cards */}
-        <RevealUp>
-          <h3 className="text-xs font-mono font-medium text-slate-500 tracking-widest uppercase mb-5">
-            Recognitions
-          </h3>
-        </RevealUp>
-        <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
-          {achievements.map(({ title, subtitle, detail, icon, color }) => {
-            const c = accentMap[color] ?? accentMap.indigo
-            return (
-              <RevealItem key={title}>
+          {/* Stat counters */}
+          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16" stagger={0.12}>
+            {dsaStats.map(({ label, value, prefix = '', suffix = '', color }) => {
+              const c = accentMap[color] ?? accentMap.indigo
+              return (
+                <WaterfallItem key={label}>
                   <motion.div
-                    whileHover={{ y: -3, boxShadow: '0 12px 32px rgba(0,0,0,0.5)' }}
-                    transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className={`flex items-start gap-4 p-5 rounded-xl border ${c} transition-colors duration-300`}
+                    whileHover={{ y: -5, scale: 1.03, boxShadow: '0 16px 48px rgba(0,0,0,0.5)' }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className={`flex flex-col items-center py-9 px-4 rounded-2xl border ${c.card} ${c.hover} shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-colors duration-300 text-center cursor-default`}
                   >
-                  <div className="text-2xl shrink-0">{icon}</div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-200">{title}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{subtitle}</div>
-                    <div className="text-xs text-slate-400 mt-1.5 leading-relaxed">{detail}</div>
-                  </div>
-                </motion.div>
-              </RevealItem>
-            )
-          })}
-        </RevealStagger>
+                    <div className={`text-4xl sm:text-5xl font-extrabold mb-2.5 ${c.num}`}>
+                      <AnimatedCounter target={value} prefix={prefix} suffix={suffix} />
+                    </div>
+                    <div className="text-sm text-slate-500 font-medium">{label}</div>
+                  </motion.div>
+                </WaterfallItem>
+              )
+            })}
+          </WaterfallGroup>
 
-        {/* Coding badge grid */}
-        <RevealUp>
-          <h3 className="text-xs font-mono font-medium text-slate-500 tracking-widest uppercase mb-5">
-            Coding Milestones
-          </h3>
-        </RevealUp>
-        <RevealStagger className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {codingBadges.map(({ label, icon, desc, active }) => (
-            <RevealItem key={label}>
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                className={`group relative flex flex-col items-center text-center p-4 rounded-xl border transition-all duration-300 cursor-default overflow-hidden ${
-                  active
-                    ? 'bg-indigo-500/[0.08] border-indigo-500/50 shadow-[0_0_24px_rgba(99,102,241,0.18)]'
-                    : 'bg-white/[0.03] border-white/[0.07] hover:border-indigo-500/25 hover:bg-indigo-500/[0.04]'
-                }`}
-              >
-                {active && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
-                    <span className="absolute top-1.5 right-1.5 text-[9px] font-bold text-indigo-300 bg-indigo-500/20 border border-indigo-500/30 px-1.5 py-0.5 rounded-full tracking-wide leading-none">
-                      ACTIVE
-                    </span>
-                  </>
-                )}
-                <span className="text-2xl mb-2 relative">{icon}</span>
-                <span className={`text-xs font-semibold leading-tight relative ${active ? 'text-indigo-200' : 'text-slate-300'}`}>
-                  {label}
-                </span>
-                <span className="text-[10px] text-slate-600 mt-1 leading-tight hidden group-hover:block relative">
-                  {desc}
-                </span>
-              </motion.div>
-            </RevealItem>
-          ))}
-        </RevealStagger>
+          {/* Recognitions label */}
+          <WaterfallItem>
+            <p className="text-xs font-mono font-medium text-slate-500 tracking-[0.18em] uppercase mb-6">
+              Recognitions
+            </p>
+          </WaterfallItem>
+
+          {/* Achievement cards */}
+          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-2 gap-4" stagger={0.1}>
+            {achievements.map(({ title, subtitle, detail, icon, color }) => {
+              const c = accentMap[color] ?? accentMap.indigo
+              return (
+                <WaterfallItem key={title}>
+                  <motion.div
+                    whileHover={{ y: -3, boxShadow: '0 14px 40px rgba(0,0,0,0.5)' }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className={`flex items-start gap-4 p-5 rounded-xl border ${c.card} ${c.hover} transition-colors duration-300`}
+                  >
+                    <div className="text-2xl shrink-0 mt-0.5">{icon}</div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-200 mb-0.5">{title}</div>
+                      <div className="text-xs text-slate-500 mb-1.5">{subtitle}</div>
+                      <div className="text-xs text-slate-400 leading-relaxed">{detail}</div>
+                    </div>
+                  </motion.div>
+                </WaterfallItem>
+              )
+            })}
+          </WaterfallGroup>
+
+        </WaterfallSection>
       </div>
     </section>
   )

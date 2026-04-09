@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { X, Sparkles, ChevronRight, Zap } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
 import { TechBadge } from './ui/Badge'
-import { RevealStagger, RevealItem } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { projects } from '../data'
 
 function MetricPill({ label, value }) {
@@ -238,13 +238,15 @@ export default function Projects() {
           subtitle="Full-stack, production-grade systems built with real architecture decisions."
         />
 
-        <RevealStagger className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {projects.map((project) => (
-            <RevealItem key={project.id}>
-              <ProjectCard project={project} onClick={() => setSelected(project)} />
-            </RevealItem>
-          ))}
-        </RevealStagger>
+        <WaterfallSection>
+          <WaterfallGroup className="grid grid-cols-1 md:grid-cols-2 gap-5" stagger={0.13}>
+            {projects.map((project) => (
+              <WaterfallItem key={project.id}>
+                <ProjectCard project={project} onClick={() => setSelected(project)} />
+              </WaterfallItem>
+            ))}
+          </WaterfallGroup>
+        </WaterfallSection>
       </div>
 
       <AnimatePresence>

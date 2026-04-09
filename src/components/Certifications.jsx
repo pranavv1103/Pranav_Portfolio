@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
-import { RevealStagger, RevealItem } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { certifications } from '../data'
 
 const colorTokens = {
@@ -51,11 +51,12 @@ export default function Certifications() {
           subtitle="Industry certifications across cloud, AI, data science, and software engineering fundamentals."
         />
 
-        <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {certifications.map(({ category, icon, color, items }) => {
-            const c = colorTokens[color] ?? colorTokens.indigo
-            return (
-              <RevealItem key={category}>
+        <WaterfallSection>
+          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-2 gap-5" stagger={0.12}>
+            {certifications.map(({ category, icon, color, items }) => {
+              const c = colorTokens[color] ?? colorTokens.indigo
+              return (
+                <WaterfallItem key={category}>
                 <motion.div
                   whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(0,0,0,0.5)' }}
                   transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -85,10 +86,11 @@ export default function Certifications() {
                     ))}
                   </ul>
                 </motion.div>
-              </RevealItem>
-            )
-          })}
-        </RevealStagger>
+                </WaterfallItem>
+              )
+            })}
+          </WaterfallGroup>
+        </WaterfallSection>
       </div>
     </section>
   )

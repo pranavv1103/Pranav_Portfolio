@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin, MapPin, Download, ArrowUpRight } from 'lucide-react'
-import { RevealUp } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 
 const links = [
   {
@@ -51,7 +51,7 @@ export default function Contact() {
       </div>
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <RevealUp>
+        <WaterfallSection>
           <span className="inline-flex items-center gap-2 text-xs font-mono font-medium tracking-widest text-indigo-400 uppercase mb-4">
             <span className="w-6 h-[1px] bg-indigo-400/60" />
             Contact
@@ -92,7 +92,7 @@ export default function Contact() {
           </div>
 
           {/* Links grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left" stagger={0.1}>
             {links.map(({ icon: Icon, label, value, href, color }) => {
               const c = colorMap[color]
               const inner = (
@@ -114,13 +114,13 @@ export default function Contact() {
                 </motion.div>
               )
               return href ? (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer">{inner}</a>
+                <WaterfallItem key={label}><a href={href} target="_blank" rel="noopener noreferrer">{inner}</a></WaterfallItem>
               ) : (
-                <div key={label}>{inner}</div>
+                <WaterfallItem key={label}><div>{inner}</div></WaterfallItem>
               )
             })}
-          </div>
-        </RevealUp>
+          </WaterfallGroup>
+        </WaterfallSection>
       </div>
 
       {/* Footer */}

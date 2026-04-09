@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Award } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
-import { RevealStagger, RevealItem } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { education } from '../data'
 
 const degreeColors = [
@@ -36,23 +37,31 @@ export default function Education() {
           subtitle="Strong CS fundamentals across two countries, two programs, and consistent high performance."
         />
 
-        <div className="relative">
-          {/* Timeline spine */}
-          <div className="absolute left-0 md:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-indigo-500/30 via-cyan-500/20 to-transparent" />
+        <WaterfallSection>
+          <div className="relative">
+            {/* Timeline spine */}
+            <div className="absolute left-0 md:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-indigo-500/30 via-cyan-500/20 to-transparent" />
 
-          <RevealStagger className="flex flex-col gap-8 pl-8 md:pl-20">
-            {education.map((edu, i) => {
-              const c = degreeColors[i] ?? degreeColors[1]
-              return (
-                <RevealItem key={edu.id}>
-                  <div className="relative group">
+            <WaterfallGroup className="flex flex-col gap-8 pl-8 md:pl-20" stagger={0.14}>
+              {education.map((edu, i) => {
+                const c = degreeColors[i] ?? degreeColors[1]
+                return (
+                  <WaterfallItem key={edu.id}>
+                    <div className="relative group">
                     {/* Timeline dot */}
-                    <div
-                      className={`absolute -left-[2.35rem] md:-left-[3.35rem] top-7 w-3 h-3 rounded-full border-2 border-[#07090f] ${c.dot} group-hover:scale-125 transition-transform duration-300`}
-                    />
+                    <div className="absolute -left-[2.35rem] md:-left-[3.35rem] top-7 w-3 h-3">
+                      <motion.div
+                        animate={{ scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
+                        className="absolute inset-0 rounded-full bg-indigo-500/50"
+                      />
+                      <div className={`relative w-full h-full rounded-full border-2 border-[#07090f] ${c.dot} group-hover:scale-125 transition-transform duration-300`} />
+                    </div>
 
-                    <div
-                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-white/[0.03] border ${c.border} transition-all duration-300 hover:bg-white/[0.05]`}
+                    <motion.div
+                      whileHover={{ y: -3, boxShadow: '0 14px 48px rgba(0,0,0,0.5)' }}
+                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-white/[0.03] border ${c.border} transition-colors duration-300`}
                     >
                       {/* Gradient accent */}
                       <div
@@ -99,13 +108,14 @@ export default function Education() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
-                </RevealItem>
-              )
-            })}
-          </RevealStagger>
-        </div>
+                  </WaterfallItem>
+                )
+              })}
+            </WaterfallGroup>
+          </div>
+        </WaterfallSection>
       </div>
     </section>
   )

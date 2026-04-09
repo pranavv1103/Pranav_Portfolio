@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Layers, Code2, Zap } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
-import { RevealUp, RevealStagger, RevealItem } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 
 const pillars = [
   {
@@ -55,9 +55,10 @@ export default function About() {
           subtitle="Full stack engineer with a focus on scalable systems, secure APIs, and high-quality product delivery."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <RevealUp>
-            <div className="flex flex-col gap-5">
+        <WaterfallSection>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <WaterfallItem>
+              <div className="flex flex-col gap-5">
               <p className="text-slate-300 text-base leading-[1.85]">
                 I am a full stack software engineer pursuing my MS in Computer Science at the{' '}
                 <span className="text-slate-100 font-medium">University of Central Florida</span>{' '}
@@ -94,14 +95,14 @@ export default function About() {
                 <MapPin size={13} />
                 Orlando, FL · Open to remote and relocation
               </div>
-            </div>
-          </RevealUp>
+              </div>
+            </WaterfallItem>
 
-          <RevealStagger className="flex flex-col gap-4">
-            {pillars.map(({ icon: Icon, color, title, desc }) => {
-              const c = colorMap[color]
-              return (
-                <RevealItem key={title}>
+            <WaterfallGroup className="flex flex-col gap-4" stagger={0.13}>
+              {pillars.map(({ icon: Icon, color, title, desc }) => {
+                const c = colorMap[color]
+                return (
+                  <WaterfallItem key={title}>
                   <motion.div
                     whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.55)' }}
                     transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -117,11 +118,12 @@ export default function About() {
                       </div>
                     </div>
                   </motion.div>
-                </RevealItem>
-              )
-            })}
-          </RevealStagger>
-        </div>
+                  </WaterfallItem>
+                )
+              })}
+            </WaterfallGroup>
+          </div>
+        </WaterfallSection>
       </div>
     </section>
   )

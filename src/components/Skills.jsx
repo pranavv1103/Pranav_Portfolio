@@ -3,7 +3,7 @@ import {
   Code2, Server, Monitor, Database, Cloud, Wrench
 } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
-import { RevealStagger, RevealItem } from './ui/Reveal'
+import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
 import { skillGroups } from '../data'
 
 const iconMap = { Code2, Server, Monitor, Database, Cloud, Wrench }
@@ -27,12 +27,13 @@ export default function Skills() {
           subtitle="A focused stack built up through production use, not just coursework."
         />
 
-        <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map(({ category, icon: iconName, color, skills }) => {
-            const Icon = iconMap[iconName]
-            const c = colorMap[color]
-            return (
-              <RevealItem key={category}>
+        <WaterfallSection>
+          <WaterfallGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" stagger={0.09}>
+            {skillGroups.map(({ category, icon: iconName, color, skills }) => {
+              const Icon = iconMap[iconName]
+              const c = colorMap[color]
+              return (
+                <WaterfallItem key={category}>
                 <motion.div
                   whileHover={{ y: -3, boxShadow: '0 14px 40px rgba(0,0,0,0.5)' }}
                   transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -58,10 +59,11 @@ export default function Skills() {
                     ))}
                   </div>
                 </motion.div>
-              </RevealItem>
-            )
-          })}
-        </RevealStagger>
+                </WaterfallItem>
+              )
+            })}
+          </WaterfallGroup>
+        </WaterfallSection>
       </div>
     </section>
   )

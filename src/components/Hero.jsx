@@ -2,11 +2,22 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react'
 
+// ─── Cascading entrance timing ────────────────────────────────────────────────
+const EASE = [0.16, 1, 0.3, 1]
+
+function flowIn(delay = 0) {
+  return {
+    initial: { opacity: 0, y: 36, filter: 'blur(4px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    transition: { duration: 0.8, ease: EASE, delay },
+  }
+}
+
+// ─── Rotating role typewriter ────────────────────────────────────────────────
 const roles = [
   'Full Stack Engineer',
   'Software Engineer',
   'Product-Focused Builder',
-  'Full Stack Developer',
   'System Designer',
 ]
 
@@ -20,17 +31,18 @@ function RotatingRole() {
       setTimeout(() => {
         setIndex((i) => (i + 1) % roles.length)
         setPhase('visible')
-      }, 320)
-    }, 2600)
+      }, 340)
+    }, 2800)
     return () => clearTimeout(id)
   }, [index])
 
   return (
     <span
-      className="inline-block transition-all duration-300"
+      className="inline-block min-w-[200px]"
       style={{
         opacity: phase === 'visible' ? 1 : 0,
-        transform: phase === 'visible' ? 'translateY(0)' : 'translateY(6px)',
+        transform: phase === 'visible' ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 0.32s ease, transform 0.32s ease',
       }}
     >
       {roles[index]}
@@ -38,25 +50,27 @@ function RotatingRole() {
   )
 }
 
+// ─── Animated ambient orbs ────────────────────────────────────────────────────
 function Orb({ className, dy = -20 }) {
   return (
     <motion.div
       className={`absolute rounded-full blur-3xl pointer-events-none ${className}`}
       animate={{ y: [0, dy, 0] }}
-      transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
     />
   )
 }
 
+// ─── Floating particle dots ───────────────────────────────────────────────────
 const DOTS = [
-  { top: '12%', left: '7%',  w: 2.5, delay: 0 },
-  { top: '22%', left: '88%', w: 2,   delay: 1.1 },
-  { top: '45%', left: '4%',  w: 3,   delay: 2.3 },
-  { top: '68%', left: '90%', w: 2,   delay: 0.7 },
-  { top: '80%', left: '15%', w: 2.5, delay: 1.8 },
-  { top: '10%', left: '55%', w: 2,   delay: 3.0 },
-  { top: '58%', left: '75%', w: 3,   delay: 0.4 },
-  { top: '35%', left: '96%', w: 2,   delay: 2.0 },
+  { top: '14%', left: '6%',  w: 2.5, delay: 0 },
+  { top: '20%', left: '89%', w: 2,   delay: 1.2 },
+  { top: '44%', left: '3%',  w: 3,   delay: 2.4 },
+  { top: '70%', left: '91%', w: 2,   delay: 0.6 },
+  { top: '82%', left: '14%', w: 2.5, delay: 1.9 },
+  { top: '9%',  left: '54%', w: 2,   delay: 3.1 },
+  { top: '57%', left: '76%', w: 3,   delay: 0.3 },
+  { top: '34%', left: '97%', w: 2,   delay: 2.1 },
 ]
 
 function FloatingDots() {
@@ -65,22 +79,24 @@ function FloatingDots() {
       {DOTS.map((d, i) => (
         <motion.span
           key={i}
-          className="absolute rounded-full bg-indigo-400/20 pointer-events-none"
+          className="absolute rounded-full bg-indigo-400/25 pointer-events-none"
           style={{ top: d.top, left: d.left, width: d.w, height: d.w }}
-          animate={{ y: [0, -14, 0], opacity: [0.2, 0.55, 0.2] }}
-          transition={{ duration: 4.5 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: d.delay }}
+          animate={{ y: [0, -16, 0], opacity: [0.18, 0.5, 0.18] }}
+          transition={{ duration: 5 + i * 0.45, repeat: Infinity, ease: 'easeInOut', delay: d.delay }}
         />
       ))}
     </>
   )
 }
 
+// ─── Stats ────────────────────────────────────────────────────────────────────
 const statsData = [
   { value: '650+', label: 'LeetCode solved' },
   { value: '3.97', label: 'GPA at UCF' },
   { value: '#119', label: 'Smart Interviews' },
 ]
 
+// ─── Main component ───────────────────────────────────────────────────────────
 export default function Hero() {
   return (
     <section
