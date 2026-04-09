@@ -78,7 +78,7 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="https://github.com/pranavtej"
+              href="https://github.com/pranavv1103"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors duration-200"

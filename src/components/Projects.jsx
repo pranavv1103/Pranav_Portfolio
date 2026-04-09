@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { X, Sparkles, ChevronRight, Zap } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
 import { TechBadge } from './ui/Badge'
@@ -12,6 +12,42 @@ function MetricPill({ label, value }) {
       <span className="text-lg font-bold text-indigo-300 tabular-nums">{value}</span>
       <span className="text-[10px] text-slate-500 mt-0.5 font-medium tracking-wide text-center leading-tight">{label}</span>
     </div>
+  )
+}
+
+function TiltCard({ children, className, onClick }) {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const rotateX = useTransform(y, [-0.5, 0.5], [7, -7])
+  const rotateY = useTransform(x, [-0.5, 0.5], [-7, 7])
+  const springRotX = useSpring(rotateX, { stiffness: 250, damping: 30 })
+  const springRotY = useSpring(rotateY, { stiffness: 250, damping: 30 })
+
+  const glowX = useTransform(x, [-0.5, 0.5], [0, 100])
+  const glowY = useTransform(y, [-0.5, 0.5], [0, 100])
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    x.set((e.clientX - rect.left) / rect.width - 0.5)
+    y.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
+  return (
+    <motion.div
+      style={{ rotateX: springRotX, rotateY: springRotY, transformStyle: 'preserve-3d', transformPerspective: 800 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      className={className}
+    >
+      {children}
+    </motion.div>
   )
 }
 
@@ -115,14 +151,9 @@ function ProjectModal({ project, onClose }) {
 
 function ProjectCard({ project, onClick }) {
   return (
-    <motion.div
-      whileHover={{
-        y: -6,
-        boxShadow: '0 20px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(99,102,241,0.18)',
-      }}
-      transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)]"
+    <TiltCard
       onClick={onClick}
+      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120] border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/20 transition-colors duration-300"
       style={{ willChange: 'transform' }}
     >
       {/* Top accent bar */}
@@ -189,7 +220,7 @@ function ProjectCard({ project, onClick }) {
           <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-200" />
         </div>
       </div>
-    </motion.div>
+    </TiltCard>
   )
 }
 

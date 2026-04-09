@@ -8,10 +8,14 @@ import Skills from './components/Skills'
 import DSA from './components/DSA'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
+import ScrollProgress from './components/ui/ScrollProgress'
+import CursorGlow from './components/ui/CursorGlow'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#07090f] text-slate-100">
+    <div className="min-h-screen bg-[#07090f] text-slate-100 noise-overlay">
+      <ScrollProgress />
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />
