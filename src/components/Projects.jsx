@@ -237,11 +237,26 @@ export default function Projects() {
     <section id="projects" className="relative py-20 bg-[#07090f] overflow-hidden">
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
+      {/* Ambient orbs */}
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/[0.1] rounded-full blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.06, 1], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ x: [0, 20, 0], y: [0, -14, 0], scale: [1, 1.06, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
+      <motion.div
+        className="absolute -top-20 -right-24 w-[360px] h-[360px] rounded-full bg-purple-700/[0.04] blur-3xl pointer-events-none"
+        animate={{ x: [0, -16, 0], y: [0, 18, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+      />
+      {/* Accent beam */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-60 bg-gradient-to-b from-transparent via-indigo-400/08 to-transparent"
+          style={{ top: '15%', left: '6%', rotate: '18deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.08, 0.25, 0.08] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader

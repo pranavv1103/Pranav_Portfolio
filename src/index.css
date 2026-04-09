@@ -284,3 +284,93 @@
 .animate-scan {
   animation: scan-line 12s linear infinite;
 }
+
+/* ─── Multi-axis nebula drift (orbs that move in X+Y) ─────────────────────── */
+@keyframes nebula-xy {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  20%  { transform: translate(28px, -22px) scale(1.04); }
+  45%  { transform: translate(10px, 32px) scale(0.97); }
+  70%  { transform: translate(-26px, 8px) scale(1.03); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-nebula {
+  animation: nebula-xy 30s ease-in-out infinite;
+}
+.animate-nebula-slow {
+  animation: nebula-xy 44s ease-in-out infinite reverse;
+}
+
+/* ─── Twinkling star particle ────────────────────────────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.07; transform: scale(0.85); }
+  45%       { opacity: 0.55; transform: scale(1.4); }
+}
+.animate-twinkle {
+  animation: twinkle 3.8s ease-in-out infinite;
+}
+
+/* ─── Horizontal slow float ──────────────────────────────────────────────────── */
+@keyframes float-x {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(16px); }
+}
+.animate-float-x {
+  animation: float-x 12s ease-in-out infinite;
+}
+
+/* ─── Slow pulse-expand for section ambient glow rings ───────────────────────── */
+@keyframes ring-expand {
+  0%, 100% { transform: scale(1);    opacity: 0.12; }
+  50%       { transform: scale(1.06); opacity: 0.22; }
+}
+.animate-ring-expand {
+  animation: ring-expand 10s ease-in-out infinite;
+}
+
+/* ─── Gradient sweep for section ambient backgrounds ─────────────────────────── */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+.animate-gradient-drift {
+  background-size: 300% 300%;
+  animation: gradient-drift 18s ease infinite;
+}
+
+/* ─── Subtle Y-float for icons and decorative elements ───────────────────────── */
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-4px) rotate(2deg); }
+}
+.animate-icon-float {
+  animation: icon-float 4s ease-in-out infinite;
+}
+
+/* ─── Timeline draw-in ───────────────────────────────────────────────────────── */
+@keyframes line-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+.animate-line-grow {
+  transform-origin: top;
+  animation: line-grow 1.2s ease-out forwards;
+}
+
+/* ─── Spotlight sweep for section headings ───────────────────────────────────── */
+@keyframes title-glow {
+  0%, 100% { text-shadow: 0 0 0px transparent; }
+  50%       { text-shadow: 0 0 24px rgba(99,102,241,0.25), 0 0 48px rgba(99,102,241,0.1); }
+}
+.animate-title-glow {
+  animation: title-glow 6s ease-in-out infinite;
+}
+
+/* ─── Corner bloom for accent corner glows ───────────────────────────────────── */
+@keyframes corner-bloom {
+  0%, 100% { opacity: 0.12; transform: scale(1); }
+  50%       { opacity: 0.28; transform: scale(1.1); }
+}
+.animate-corner-bloom {
+  animation: corner-bloom 9s ease-in-out infinite;
+}

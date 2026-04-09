@@ -53,6 +53,26 @@ export default function Certifications() {
     <section id="certifications" className="relative py-20 bg-[#080c16] overflow-hidden">
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+      {/* Ambient orbs */}
+      <motion.div
+        className="absolute -top-16 left-1/4 w-[400px] h-[400px] rounded-full bg-indigo-700/[0.035] blur-3xl pointer-events-none"
+        animate={{ x: [0, 20, 0], y: [0, -14, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-full bg-cyan-700/[0.03] blur-3xl pointer-events-none"
+        animate={{ x: [0, -16, 0], y: [0, 12, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+      />
+      {/* Accent beam */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-52 bg-gradient-to-b from-transparent via-violet-400/10 to-transparent"
+          style={{ top: '22%', right: '10%', rotate: '16deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.08, 0.3, 0.08] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        />
+      </div>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/15 to-transparent" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

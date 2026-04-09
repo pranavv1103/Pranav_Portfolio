@@ -40,9 +40,16 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2"
+          className="relative inline-flex items-center gap-2"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/[0.07] border border-indigo-500/20 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-400 uppercase shadow-[0_0_16px_rgba(99,102,241,0.08)]">
+          {/* Glow bloom behind the pill */}
+          <motion.div
+            className="absolute inset-0 rounded-full blur-md opacity-60 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.18), transparent 70%)' }}
+            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.65, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <span className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/[0.07] border border-indigo-500/20 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-400 uppercase shadow-[0_0_20px_rgba(99,102,241,0.1)]">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_6px_rgba(99,102,241,0.7)] animate-pulse" />
             {eyebrow}
           </span>

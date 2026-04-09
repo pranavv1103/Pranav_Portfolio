@@ -119,13 +119,22 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#07090f]"
     >
-      {/* Drifting grid background */}
+      {/* Drifting grid background — two layers at different scales */}
       <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none animate-grid-drift"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none animate-grid-drift"
         style={{
           backgroundImage:
             'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.018] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(139,92,246,1) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,1) 1px, transparent 1px)',
+          backgroundSize: '200px 200px',
+          animation: 'grid-drift 35s linear infinite reverse',
         }}
       />
 
@@ -149,11 +158,33 @@ export default function Hero() {
         }}
       />
 
-      {/* Ambient orbs */}
-      <Orb className="w-[800px] h-[800px] bg-indigo-600/[0.07] -top-52 -left-64" dy={-30} duration={18} />
-      <Orb className="w-[600px] h-[600px] bg-violet-700/[0.06] top-1/3 -right-56" dy={26} duration={14} />
-      <Orb className="w-[350px] h-[350px] bg-cyan-600/[0.04] bottom-16 left-1/4" dy={-18} duration={20} />
-      <Orb className="w-[250px] h-[250px] bg-indigo-500/[0.05] top-1/4 right-1/4" dy={14} duration={12} />
+      {/* Ambient orbs — multi-axis drift */}
+      <motion.div
+        className="absolute w-[800px] h-[800px] rounded-full bg-indigo-600/[0.07] -top-52 -left-64 blur-3xl pointer-events-none"
+        animate={{ x: [0, 30, 0], y: [0, -30, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full bg-violet-700/[0.06] top-1/3 -right-56 blur-3xl pointer-events-none"
+        animate={{ x: [0, -25, 0], y: [0, 26, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute w-[350px] h-[350px] rounded-full bg-cyan-600/[0.04] bottom-16 left-1/4 blur-3xl pointer-events-none"
+        animate={{ x: [0, 18, 0], y: [0, -18, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute w-[250px] h-[250px] rounded-full bg-indigo-500/[0.05] top-1/4 right-1/4 blur-3xl pointer-events-none"
+        animate={{ x: [0, -12, 0], y: [0, 14, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      {/* Extra subtle rose glow — bottom centre */}
+      <motion.div
+        className="absolute w-[500px] h-[300px] rounded-full bg-purple-700/[0.04] bottom-0 left-1/2 -translate-x-1/2 blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.85, 0.5] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
+      />
 
       {/* Decorative rings */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -181,6 +212,19 @@ export default function Hero() {
           style={{ bottom: '20%', right: '22%', rotate: '12deg', transformOrigin: 'top' }}
           animate={{ opacity: [0.15, 0.4, 0.15] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+        />
+        {/* Horizontal light sweep — passes through once every ~20s */}
+        <motion.div
+          className="absolute h-px w-3/4 bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent"
+          style={{ top: '38%', left: '0%' }}
+          animate={{ x: ['-100%', '180%'], opacity: [0, 0.6, 0.6, 0] }}
+          transition={{ duration: 4, repeat: Infinity, repeatDelay: 16, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute h-px w-1/2 bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent"
+          style={{ top: '62%', right: '0%' }}
+          animate={{ x: ['100%', '-180%'], opacity: [0, 0.4, 0.4, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 22, ease: 'easeInOut', delay: 8 }}
         />
       </div>
 

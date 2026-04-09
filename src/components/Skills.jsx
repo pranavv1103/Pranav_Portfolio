@@ -23,12 +23,37 @@ export default function Skills() {
     <section id="skills" className="relative py-20 bg-[#080c16] overflow-hidden">
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
-      {/* Animated orb */}
+      {/* Animated orbs — multi-axis */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-indigo-600/[0.025] blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.65, 0.4] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ x: [0, 20, 0], y: [0, -15, 0], scale: [1, 1.07, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
+      <motion.div
+        className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full bg-purple-600/[0.035] blur-3xl pointer-events-none"
+        animate={{ x: [0, -18, 0], y: [0, 22, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-cyan-600/[0.03] blur-3xl pointer-events-none"
+        animate={{ x: [0, 16, 0], y: [0, -14, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 8 }}
+      />
+      {/* Accent beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-56 bg-gradient-to-b from-transparent via-indigo-400/10 to-transparent"
+          style={{ top: '20%', right: '15%', rotate: '18deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.1, 0.35, 0.1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        />
+        <motion.div
+          className="absolute w-px h-44 bg-gradient-to-b from-transparent via-purple-400/08 to-transparent"
+          style={{ bottom: '25%', left: '8%', rotate: '-12deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.08, 0.28, 0.08] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+        />
+      </div>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -48,14 +48,48 @@ export default function Contact() {
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
 
-      {/* Animated glow */}
+      {/* Animated orbs — multi-axis */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        animate={{ opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <div className="w-[600px] h-[400px] bg-indigo-600/[0.06] rounded-full blur-3xl" />
-      </motion.div>
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-indigo-600/[0.06] blur-3xl pointer-events-none"
+        animate={{ x: [0, 18, 0], y: [0, -14, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full bg-purple-700/[0.04] blur-3xl pointer-events-none"
+        animate={{ x: [0, 20, 0], y: [0, 16, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-[280px] h-[280px] rounded-full bg-cyan-700/[0.03] blur-3xl pointer-events-none"
+        animate={{ x: [0, -14, 0], y: [0, -12, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 8 }}
+      />
+      {/* Decorative orbit rings */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] rounded-full border border-indigo-500/[0.06] pointer-events-none"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-purple-500/[0.05] pointer-events-none"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+      />
+      {/* Accent beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-48 bg-gradient-to-b from-transparent via-indigo-400/12 to-transparent"
+          style={{ top: '8%', left: '18%', rotate: '20deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.12, 0.4, 0.12] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute w-px h-40 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent"
+          style={{ bottom: '12%', right: '16%', rotate: '-14deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.08, 0.3, 0.08] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+        />
+      </div>
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <WaterfallSection>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { SectionHeader } from './ui/SectionHeader'
 import { SpotlightCard } from './ui/SpotlightCard'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
-import { dsaStats, achievements } from '../data'
+import { dsaStats, achievements, codingBadges } from '../data'
 
 function AnimatedCounter({ target, prefix = '', suffix = '' }) {
   const [count, setCount] = useState(0)
@@ -48,6 +48,33 @@ export default function DSA() {
   return (
     <section id="dsa" className="relative py-20 bg-[#07090f] overflow-hidden">
       <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
+      {/* Ambient orbs */}
+      <motion.div
+        className="absolute -top-20 -left-20 w-[450px] h-[450px] rounded-full bg-indigo-700/[0.04] blur-3xl pointer-events-none"
+        animate={{ x: [0, 22, 0], y: [0, -18, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute -bottom-10 -right-10 w-[380px] h-[380px] rounded-full bg-amber-600/[0.03] blur-3xl pointer-events-none"
+        animate={{ x: [0, -18, 0], y: [0, 14, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
+      />
+      {/* Twinkling star particles in badge area */}
+      {[
+        { top: '68%', left: '3%', delay: 0 },
+        { top: '72%', left: '96%', delay: 1.2 },
+        { top: '80%', left: '50%', delay: 2.1 },
+        { top: '75%', left: '22%', delay: 0.8 },
+        { top: '65%', left: '78%', delay: 1.7 },
+      ].map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full bg-amber-400/40 pointer-events-none"
+          style={{ top: p.top, left: p.left }}
+          animate={{ opacity: [0.1, 0.55, 0.1], scale: [0.8, 1.4, 0.8] }}
+          transition={{ duration: 3.5 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: p.delay }}
+        />
+      ))}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,6 +151,74 @@ export default function DSA() {
                 </WaterfallItem>
               )
             })}
+          </WaterfallGroup>
+
+          {/* Coding Milestones label */}
+          <WaterfallItem>
+            <div className="relative mt-10 mb-5">
+              <p className="text-xs font-mono font-medium text-slate-500 tracking-[0.18em] uppercase">
+                Coding Milestones
+              </p>
+              {/* Glow beneath label */}
+              <motion.div
+                className="absolute -bottom-3 left-0 w-40 h-4 rounded-full blur-xl bg-amber-400/10 pointer-events-none"
+                animate={{ opacity: [0.4, 1, 0.4], scaleX: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
+          </WaterfallItem>
+
+          {/* Badge grid */}
+          <WaterfallGroup className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" stagger={0.08}>
+            {codingBadges.map(({ label, icon, desc, active, count, years }) => (
+              <WaterfallItem key={label}>
+                <motion.div
+                  whileHover={{ scale: 1.04, y: -3, boxShadow: '0 12px 36px rgba(0,0,0,0.5)' }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className={`group relative flex flex-col items-center text-center p-4 rounded-xl border transition-all duration-300 cursor-default overflow-hidden ${
+                    active
+                      ? 'bg-indigo-500/[0.08] border-indigo-500/50 shadow-[0_0_24px_rgba(99,102,241,0.18)]'
+                      : 'bg-white/[0.03] border-white/[0.07] hover:border-indigo-500/30 hover:bg-indigo-500/[0.05]'
+                  }`}
+                >
+                  {active && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
+                      <span className="absolute top-1.5 right-1.5 text-[9px] font-bold text-indigo-300 bg-indigo-500/20 border border-indigo-500/30 px-1.5 py-0.5 rounded-full tracking-wide leading-none">
+                        ACTIVE
+                      </span>
+                    </>
+                  )}
+                  {count && !active && (
+                    <span className="absolute top-1.5 right-1.5 text-[9px] font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-1.5 py-0.5 rounded-full tracking-wide leading-none">
+                      ×{count}
+                    </span>
+                  )}
+                  <span className="text-2xl mb-2 relative group-hover:scale-110 transition-transform duration-300">{icon}</span>
+                  <span className={`text-xs font-semibold leading-tight relative ${active ? 'text-indigo-200' : 'text-slate-300'}`}>
+                    {label}
+                  </span>
+                  {/* Hover reveal — year dots for multi-year badges, desc text for others */}
+                  <div className="mt-1.5 min-h-[26px] flex flex-col items-center justify-start w-full">
+                    {years ? (
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-250 flex flex-col items-center gap-1">
+                        <div className="flex gap-1 flex-wrap justify-center">
+                          {years.map(y => (
+                            <span key={y} className="text-[9px] font-mono font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-1.5 py-0.5 rounded-full">
+                              {y}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="text-[10px] text-slate-400 leading-tight opacity-0 group-hover:opacity-100 transition-opacity duration-250 px-1 text-center">
+                        {desc}
+                      </span>
+                    )}
+                  </div>
+                </motion.div>
+              </WaterfallItem>
+            ))}
           </WaterfallGroup>
 
         </WaterfallSection>

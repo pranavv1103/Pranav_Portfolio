@@ -13,12 +13,26 @@ export default function Experience() {
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
       {/* Subtle top border glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
-      {/* Ambient orb */}
+      {/* Ambient orbs — multi-axis */}
       <motion.div
         className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-indigo-600/[0.03] blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.35, 0.6, 0.35] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ x: [0, -22, 0], y: [0, 18, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
+      <motion.div
+        className="absolute bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-purple-600/[0.025] blur-3xl pointer-events-none"
+        animate={{ x: [0, 18, 0], y: [0, -14, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+      />
+      {/* Accent beam */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-px h-60 bg-gradient-to-b from-transparent via-indigo-400/08 to-transparent"
+          style={{ top: '25%', right: '8%', rotate: '14deg', transformOrigin: 'top' }}
+          animate={{ opacity: [0.08, 0.28, 0.08] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+      </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
