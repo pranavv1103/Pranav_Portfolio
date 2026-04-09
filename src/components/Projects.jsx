@@ -155,220 +155,43 @@ function ProjectModal({ project, onClose }) {
   )
 }
 
-// ── Shared chrome bar ─────────────────────────────────────────────────────────
-function BrowserChrome({ gradient, category }) {
-  return (
-    <div className="absolute top-0 left-0 right-0 h-8 bg-black/40 border-b border-white/[0.08] flex items-center gap-1.5 px-3 z-10">
-      <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-      <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-      <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-      <div className="flex-1 mx-2 h-4 rounded-sm bg-white/[0.08] flex items-center px-2">
-        <div className="h-1.5 w-1/2 rounded-full bg-white/20" />
-      </div>
-      <span className={`text-[8px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full bg-gradient-to-r ${gradient} text-white shadow-lg`}>
-        {category}
-      </span>
-    </div>
-  )
+// ── Project image banner ──────────────────────────────────────────────────────
+const bannerImages = {
+  1: '/images/project-phoenix.jpg',
+  2: '/images/project-devcollab.jpg',
+  3: '/images/project-studysync.jpg',
+  4: '/images/project-attendance.jpg',
 }
 
-// ── Phoenix banner — publishing editor UI ─────────────────────────────────────
-function PhoenixBanner() {
-  return (
-    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-indigo-950 via-[#10102a] to-violet-950 flex-shrink-0">
-      <BrowserChrome gradient="from-indigo-500 to-violet-600" category="Full-Stack" />
-      {/* Sidebar */}
-      <div className="absolute left-3 top-10 bottom-3 w-24 rounded-lg bg-white/[0.04] border border-white/[0.08] flex flex-col gap-1.5 p-2 overflow-hidden">
-        <div className="h-2 w-14 rounded-full bg-indigo-400/60" />
-        <div className="h-px w-full bg-white/[0.06]" />
-        {['Posts','Drafts','Analytics','Users','Settings'].map((l, i) => (
-          <div key={l} className={`h-5 rounded px-1.5 flex items-center gap-1 ${i === 0 ? 'bg-indigo-500/30 border border-indigo-500/40' : ''}`}>
-            <div className={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-indigo-400' : 'bg-white/20'}`} />
-            <div className={`h-1.5 rounded-full ${i === 0 ? 'bg-indigo-300/70 w-8' : 'bg-white/15 w-10'}`} />
-          </div>
-        ))}
-      </div>
-      {/* Main editor area */}
-      <div className="absolute left-30 right-3 top-10 bottom-3 ml-28 flex flex-col gap-2">
-        {/* Toolbar */}
-        <div className="flex gap-1.5">
-          {['B','I','H1','AI'].map((t, i) => (
-            <div key={t} className={`h-5 w-6 rounded text-[7px] font-bold flex items-center justify-center border ${i === 3 ? 'bg-violet-500/30 border-violet-400/50 text-violet-300' : 'bg-white/[0.05] border-white/[0.08] text-white/40'}`}>{t}</div>
-          ))}
-          <div className="flex-1 h-5 rounded bg-white/[0.03] border border-white/[0.05]" />
-          <div className="h-5 w-14 rounded bg-indigo-500/50 border border-indigo-400/40 text-[7px] text-indigo-200 font-bold flex items-center justify-center">Publish</div>
-        </div>
-        {/* Post content lines */}
-        <div className="flex-1 rounded-lg bg-white/[0.025] border border-white/[0.06] p-2 flex flex-col gap-1.5">
-          <div className="h-3 w-3/4 rounded-full bg-white/30" />
-          <div className="h-1.5 w-full rounded-full bg-white/10" />
-          <div className="h-1.5 w-5/6 rounded-full bg-white/10" />
-          <div className="h-1.5 w-2/3 rounded-full bg-white/10" />
-          <div className="h-px w-full bg-white/[0.06] my-1" />
-          <div className="flex gap-1">
-            <div className="h-4 w-12 rounded bg-indigo-500/20 border border-indigo-400/30 text-[6px] text-indigo-300 flex items-center justify-center">#tech</div>
-            <div className="h-4 w-14 rounded bg-violet-500/20 border border-violet-400/30 text-[6px] text-violet-300 flex items-center justify-center">#backend</div>
-          </div>
-          <div className="h-1.5 w-full rounded-full bg-white/10" />
-          <div className="h-1.5 w-4/5 rounded-full bg-white/10" />
-        </div>
-        {/* Stats row */}
-        <div className="flex gap-1.5">
-          {[['20+','APIs'],['15+','Features'],['AI','Summary']].map(([v,l]) => (
-            <div key={l} className="flex-1 h-7 rounded-lg bg-white/[0.04] border border-white/[0.07] flex flex-col items-center justify-center">
-              <span className="text-[8px] font-bold text-indigo-300">{v}</span>
-              <span className="text-[6px] text-white/30">{l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* Glow */}
-      <div className="absolute bottom-0 left-1/3 w-1/2 h-10 bg-indigo-500/20 blur-2xl pointer-events-none" />
-    </div>
-  )
-}
-
-// ── DevCollab banner — chat / messaging UI ────────────────────────────────────
-function DevCollabBanner() {
-  const messages = [
-    { side: 'left',  text: 'Can you review the auth PR?', bg: 'bg-white/[0.08]' },
-    { side: 'right', text: '✔ On it — pushed a fix',      bg: 'bg-blue-600/40' },
-    { side: 'left',  text: '[AI] Thread summary ready',    bg: 'bg-indigo-500/25' },
-  ]
-  return (
-    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-blue-950 via-[#0a0f28] to-indigo-950 flex-shrink-0">
-      <BrowserChrome gradient="from-blue-600 to-indigo-600" category="Full-Stack" />
-      {/* Server list */}
-      <div className="absolute left-2 top-10 bottom-3 w-10 flex flex-col items-center gap-2 pt-2">
-        {['#','D','B','S'].map((s, i) => (
-          <div key={i} className={`w-8 h-8 rounded-xl flex items-center justify-center text-[9px] font-bold border ${i === 0 ? 'bg-blue-500/40 border-blue-400/50 text-blue-200' : 'bg-white/[0.05] border-white/[0.08] text-white/30'}`}>{s}</div>
-        ))}
-      </div>
-      {/* Channel list */}
-      <div className="absolute left-14 top-10 bottom-3 w-24 flex flex-col gap-0.5 pt-1">
-        <div className="text-[7px] text-white/30 font-mono px-1 mb-1">CHANNELS</div>
-        {['# general','# backend','# frontend','# devops'].map((c, i) => (
-          <div key={c} className={`h-5 rounded px-2 text-[8px] flex items-center ${i === 1 ? 'bg-blue-500/25 text-blue-200 font-semibold' : 'text-white/30'}`}>{c}</div>
-        ))}
-      </div>
-      {/* Chat area */}
-      <div className="absolute left-40 right-3 top-10 bottom-3 flex flex-col justify-between">
-        <div className="flex flex-col gap-2 flex-1 overflow-hidden pt-1">
-          {messages.map((m, i) => (
-            <div key={i} className={`flex ${m.side === 'right' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[75%] px-2.5 py-1.5 rounded-xl text-[8px] text-white/80 ${m.bg} border border-white/[0.06]`}>{m.text}</div>
-            </div>
-          ))}
-        </div>
-        {/* Input bar */}
-        <div className="h-7 rounded-xl bg-white/[0.05] border border-white/[0.10] flex items-center px-3 gap-2">
-          <div className="flex-1 h-1.5 rounded-full bg-white/15" />
-          <div className="w-5 h-5 rounded-lg bg-blue-500/50 flex items-center justify-center">
-            <div className="w-2 h-2 border-t border-r border-white/80 rotate-45 translate-x-[-0.5px]" />
-          </div>
-        </div>
-      </div>
-      <div className="absolute bottom-0 left-1/2 w-1/2 h-10 bg-blue-500/15 blur-2xl pointer-events-none" />
-    </div>
-  )
-}
-
-// ── StudySync banner — shared goal dashboard ──────────────────────────────────
-function StudySyncBanner() {
-  return (
-    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-violet-950 via-[#0f0a28] to-blue-950 flex-shrink-0">
-      <BrowserChrome gradient="from-violet-600 to-blue-600" category="Full-Stack" />
-      {/* Two user avatars */}
-      <div className="absolute top-11 left-3 right-3 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-full bg-violet-500/50 border-2 border-violet-400/60 flex items-center justify-center text-[8px] text-white/80 font-bold">A</div>
-        <div className="w-7 h-7 rounded-full bg-blue-500/50 border-2 border-blue-400/60 flex items-center justify-center text-[8px] text-white/80 font-bold">B</div>
-        <div className="flex-1 h-1 rounded-full bg-gradient-to-r from-violet-400/50 to-blue-400/50 mx-1" />
-        <div className="text-[8px] text-green-400 font-bold bg-green-500/15 border border-green-500/30 px-1.5 py-0.5 rounded-full">Synced</div>
-      </div>
-      {/* Goals list */}
-      <div className="absolute top-22 left-3 right-3 mt-1 flex flex-col gap-1.5" style={{top:'4.5rem'}}>
-        {[['LeetCode Daily','85%','violet'],['DSA Chapter 7','60%','blue'],['Mock Interview','40%','indigo']].map(([g, pct, c]) => (
-          <div key={g} className="flex flex-col gap-0.5">
-            <div className="flex justify-between">
-              <span className="text-[8px] text-white/60">{g}</span>
-              <span className={`text-[8px] font-bold text-${c}-400`}>{pct}</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-white/[0.06]">
-              <div className={`h-full rounded-full bg-gradient-to-r from-${c}-500/70 to-${c}-400/50`} style={{width: pct}} />
-            </div>
-          </div>
-        ))}
-      </div>
-      {/* 7-day streak row */}
-      <div className="absolute bottom-3 left-3 right-3 flex gap-1">
-        {['M','T','W','T','F','S','S'].map((d, i) => (
-          <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
-            <div className={`w-full h-5 rounded-md ${i < 5 ? 'bg-violet-500/45 border border-violet-400/40' : 'bg-white/[0.04] border border-white/[0.06]'}`} />
-            <span className="text-[6px] text-white/30">{d}</span>
-          </div>
-        ))}
-      </div>
-      <div className="absolute bottom-0 left-1/3 w-1/2 h-10 bg-violet-500/15 blur-2xl pointer-events-none" />
-    </div>
-  )
-}
-
-// ── Attendance banner — face detection UI ─────────────────────────────────────
-function AttendanceBanner() {
-  return (
-    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-slate-900 via-[#0a1020] to-blue-950 flex-shrink-0">
-      <BrowserChrome gradient="from-slate-500 to-blue-700" category="AI / ML" />
-      {/* Camera viewfinder */}
-      <div className="absolute top-11 left-3 w-36 bottom-3">
-        <div className="relative h-full rounded-lg bg-black/60 border border-white/[0.10] overflow-hidden">
-          {/* Face outline */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-20 rounded-full border-2 border-green-400/70" />
-          {/* Corner brackets */}
-          {[['top-2 left-2','border-t-2 border-l-2'],['top-2 right-2','border-t-2 border-r-2'],['bottom-2 left-2','border-b-2 border-l-2'],['bottom-2 right-2','border-b-2 border-r-2']].map(([pos, cls], i) => (
-            <div key={i} className={`absolute ${pos} w-4 h-4 ${cls} border-green-400/80`} />
-          ))}
-          {/* Scan line animation */}
-          <motion.div
-            className="absolute left-0 right-0 h-0.5 bg-green-400/50"
-            animate={{ top: ['20%', '80%', '20%'] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          {/* 97% overlay */}
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center">
-            <span className="text-[9px] font-bold text-green-400 bg-green-500/20 border border-green-500/30 px-2 py-0.5 rounded-full">97% match</span>
-          </div>
-        </div>
-      </div>
-      {/* Attendance list */}
-      <div className="absolute top-11 left-42 right-3 bottom-3 flex flex-col gap-1.5 ml-40">
-        <div className="text-[7px] text-white/30 font-mono mb-0.5">ATTENDANCE LOG</div>
-        {[['S. Raj','09:02','✓'],['P. Kumar','09:05','✓'],['A. Mehta','09:11','✓'],['T. Singh','—','✗']].map(([n, t, s]) => (
-          <div key={n} className="flex items-center gap-1.5 h-6 rounded-lg bg-white/[0.04] border border-white/[0.06] px-2">
-            <div className="w-4 h-4 rounded-full bg-white/[0.10] flex items-center justify-center text-[6px] text-white/50">{n[0]}</div>
-            <span className="text-[8px] text-white/60 flex-1">{n}</span>
-            <span className="text-[7px] text-white/30">{t}</span>
-            <span className={`text-[9px] font-bold ${s === '✓' ? 'text-green-400' : 'text-red-400'}`}>{s}</span>
-          </div>
-        ))}
-        {/* QR badge */}
-        <div className="flex items-center gap-1.5 mt-auto">
-          <div className="w-8 h-8 rounded-md bg-white/[0.08] border border-white/[0.12] grid grid-cols-3 gap-0.5 p-1">
-            {Array(9).fill(0).map((_, i) => <div key={i} className={`rounded-[1px] ${[0,2,4,6,8].includes(i) ? 'bg-white/60' : 'bg-transparent'}`} />)}
-          </div>
-          <span className="text-[7px] text-white/40">Time-bound QR gate</span>
-        </div>
-      </div>
-      <div className="absolute bottom-0 left-1/4 w-1/2 h-10 bg-blue-500/10 blur-2xl pointer-events-none" />
-    </div>
-  )
-}
-
-// ── Dispatcher ────────────────────────────────────────────────────────────────
 function ProjectBanner({ project }) {
-  if (project.id === 1) return <PhoenixBanner />
-  if (project.id === 2) return <DevCollabBanner />
-  if (project.id === 3) return <StudySyncBanner />
-  return <AttendanceBanner />
+  return (
+    <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
+      {/* Real photo */}
+      <img
+        src={bannerImages[project.id]}
+        alt={project.name}
+        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+      />
+      {/* Dark gradient overlay — bottom fade into card body */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/50 to-black/30" />
+      {/* Top chrome row */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-black/40 backdrop-blur-sm border-b border-white/[0.08] flex items-center gap-1.5 px-3">
+        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+        <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+        <div className="flex-1 mx-2 h-4 rounded-sm bg-white/[0.08] flex items-center px-2">
+          <div className="h-1.5 w-1/3 rounded-full bg-white/25" />
+        </div>
+        <span className={`text-[8px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full bg-gradient-to-r ${project.gradient} text-white shadow-lg`}>
+          {project.category}
+        </span>
+      </div>
+      {/* Project name overlay at bottom */}
+      <div className="absolute bottom-3 left-4">
+        <span className="text-xs font-semibold text-white/70 tracking-wide">{project.tagline.split(' ').slice(0, 6).join(' ')}…</span>
+      </div>
+    </div>
+  )
 }
 
 function ProjectCard({ project, onClick }) {
