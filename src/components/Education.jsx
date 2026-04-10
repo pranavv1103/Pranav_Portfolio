@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { GraduationCap, MapPin, Award } from 'lucide-react'
+import { MapPin, Award } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
 import { SpotlightCard } from './ui/SpotlightCard'
 import { WaterfallSection, WaterfallGroup, WaterfallItem } from './ui/Reveal'
@@ -28,9 +28,24 @@ const degreeColors = [
   },
 ]
 
+const instituteLogos = {
+  1: {
+    src: '/images/education-ucf-logo.png',
+    alt: 'University of Central Florida logo',
+    frameClass: 'bg-black/85 border-[#f7c948]/18 p-1.5',
+    imageClass: 'w-full h-full object-contain',
+  },
+  2: {
+    src: '/images/education-griet-logo.png',
+    alt: 'GRIET logo',
+    frameClass: 'bg-white border-white/15 p-1.5',
+    imageClass: 'w-full h-full object-cover object-left',
+  },
+}
+
 export default function Education() {
   return (
-    <section id="education" className="relative py-20 bg-[#07090f] overflow-hidden">
+    <section id="education" className="relative py-20 bg-[#070e1c] overflow-hidden">
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/15 to-transparent" />
@@ -50,6 +65,7 @@ export default function Education() {
             <WaterfallGroup className="flex flex-col gap-8 pl-8 md:pl-20" stagger={0.14}>
               {education.map((edu, i) => {
                 const c = degreeColors[i] ?? degreeColors[1]
+                const logo = instituteLogos[edu.id]
                 return (
                   <WaterfallItem key={edu.id}>
                     <div className="relative group">
@@ -60,7 +76,7 @@ export default function Education() {
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
                         className="absolute inset-0 rounded-full bg-indigo-500/50"
                       />
-                      <div className={`relative w-full h-full rounded-full border-2 border-[#07090f] ${c.dot} group-hover:scale-125 transition-transform duration-300`} />
+                      <div className={`relative w-full h-full rounded-full border-2 border-[#070e1c] ${c.dot} group-hover:scale-125 transition-transform duration-300`} />
                     </div>
 
                     <SpotlightCard
@@ -70,7 +86,7 @@ export default function Education() {
                     <motion.div
                       whileHover={{ y: -3, boxShadow: '0 14px 48px rgba(0,0,0,0.55)' }}
                       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm`}
+                      className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-[#0e1f3a]`}
                     >
                       {/* Gradient accent */}
                       <div
@@ -79,8 +95,14 @@ export default function Education() {
 
                       <div className="relative flex flex-col sm:flex-row sm:items-start gap-5">
                         {/* Icon */}
-                        <div className={`p-3 rounded-xl border ${c.iconBg} shrink-0 self-start`}>
-                          <GraduationCap size={22} className={c.iconColor} />
+                        <div className={`w-12 h-12 rounded-xl border overflow-hidden shrink-0 self-start shadow-[0_8px_24px_rgba(0,0,0,0.28)] ${logo ? logo.frameClass : c.iconBg}`}>
+                          {logo ? (
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className={logo.imageClass}
+                            />
+                          ) : null}
                         </div>
 
                         <div className="flex-1 min-w-0">

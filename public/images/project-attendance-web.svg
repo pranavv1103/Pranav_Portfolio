@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="576" viewBox="0 0 1024 576">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#0a1628"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#111827"/>
+      <stop offset="100%" style="stop-color:#0d1520"/>
+    </linearGradient>
+    <linearGradient id="greenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00ff88;stop-opacity:0.02"/>
+    </linearGradient>
+    <linearGradient id="cameraFeed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2535"/>
+      <stop offset="100%" style="stop-color:#0f1a28"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="greenGlowFilter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="cameraClip">
+      <rect x="28" y="52" width="460" height="340" rx="6"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="576" fill="url(#bg)"/>
+
+  <!-- Top navbar -->
+  <rect width="1024" height="44" fill="#0d1520"/>
+  <rect width="1024" height="1" y="44" fill="#1e3a5f" opacity="0.6"/>
+  <!-- Nav logo -->
+  <circle cx="22" cy="22" r="8" fill="#00e676" opacity="0.9"/>
+  <rect x="12" y="19" width="20" height="6" rx="1" fill="#0d1520"/>
+  <rect x="17" y="16" width="10" height="12" rx="1" fill="#0d1520"/>
+  <text x="38" y="27" font-family="monospace" font-size="13" font-weight="bold" fill="#e2e8f0" letter-spacing="1">SmartAttend</text>
+  <text x="38" y="27" font-family="monospace" font-size="13" font-weight="bold" fill="#00e676" letter-spacing="1">Smart</text>
+  <text x="86" y="27" font-family="monospace" font-size="13" font-weight="bold" fill="#e2e8f0" letter-spacing="1">Attend</text>
+  <!-- Nav tabs -->
+  <text x="220" y="27" font-family="monospace" font-size="11" fill="#00e676" letter-spacing="0.5">■ LIVE FEED</text>
+  <text x="310" y="27" font-family="monospace" font-size="11" fill="#4a6080">REPORTS</text>
+  <text x="375" y="27" font-family="monospace" font-size="11" fill="#4a6080">STUDENTS</text>
+  <text x="450" y="27" font-family="monospace" font-size="11" fill="#4a6080">SETTINGS</text>
+  <!-- Nav right -->
+  <rect x="840" y="12" width="80" height="20" rx="10" fill="#1a2f4a"/>
+  <text x="856" y="25" font-family="monospace" font-size="10" fill="#00e676">● LIVE</text>
+  <text x="920" y="27" font-family="monospace" font-size="11" fill="#4a6080">CS301 ▾</text>
+
+  <!-- Left: Camera feed panel -->
+  <rect x="18" y="52" width="480" height="360" rx="8" fill="url(#panelGrad)" stroke="#1e3a5f" stroke-width="1"/>
+  <!-- Camera feed area -->
+  <rect x="28" y="62" width="460" height="320" rx="5" fill="url(#cameraFeed)"/>
+
+  <!-- Simulated person silhouette / face area -->
+  <!-- Head shape -->
+  <ellipse cx="258" cy="165" rx="62" ry="74" fill="#2a3f5a" opacity="0.7"/>
+  <!-- Neck -->
+  <rect x="236" y="228" width="44" height="40" fill="#2a3f5a" opacity="0.6"/>
+  <!-- Shoulders -->
+  <ellipse cx="258" cy="295" rx="90" ry="50" fill="#1e3355" opacity="0.5"/>
+
+  <!-- Face features (subtle) -->
+  <!-- Eyes -->
+  <ellipse cx="238" cy="160" rx="8" ry="5" fill="#3a5570" opacity="0.8"/>
+  <ellipse cx="278" cy="160" rx="8" ry="5" fill="#3a5570" opacity="0.8"/>
+  <!-- Eye pupils -->
+  <circle cx="238" cy="160" r="3.5" fill="#1a2535" opacity="0.9"/>
+  <circle cx="278" cy="160" r="3.5" fill="#1a2535" opacity="0.9"/>
+  <!-- Nose hint -->
+  <path d="M258 170 L252 188 L264 188" stroke="#3a5570" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Mouth hint -->
+  <path d="M244 200 Q258 210 272 200" stroke="#3a5570" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- GREEN FACE RECOGNITION BOUNDING BOX (the key differentiator) -->
+  <!-- Corner brackets - top left -->
+  <line x1="172" y1="88" x2="172" y2="108" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <line x1="172" y1="88" x2="192" y2="88" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <!-- corner brackets - top right -->
+  <line x1="344" y1="88" x2="344" y2="108" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <line x1="324" y1="88" x2="344" y2="88" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <!-- corner brackets - bottom left -->
+  <line x1="172" y1="270" x2="172" y2="250" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <line x1="172" y1="270" x2="192" y2="270" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <!-- corner brackets - bottom right -->
+  <line x1="344" y1="270" x2="344" y2="250" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+  <line x1="324" y1="270" x2="344" y2="270" stroke="#00e676" stroke-width="2.5" filter="url(#greenGlowFilter)"/>
+
+  <!-- Subtle bounding box fill -->
+  <rect x="172" y="88" width="172" height="182" fill="url(#greenGlow)" rx="2"/>
+
+  <!-- RECOGNIZED label above box -->
+  <rect x="183" y="71" width="150" height="18" rx="3" fill="#00e676" opacity="0.15"/>
+  <rect x="183" y="71" width="150" height="18" rx="3" fill="none" stroke="#00e676" stroke-width="0.8"/>
+  <circle cx="196" cy="80" r="4" fill="#00e676"/>
+  <text x="205" y="84" font-family="monospace" font-size="10" font-weight="bold" fill="#00e676" letter-spacing="1">RECOGNIZED</text>
+
+  <!-- Landmark dots on face -->
+  <circle cx="238" cy="158" r="1.5" fill="#00e676" opacity="0.7"/>
+  <circle cx="278" cy="158" r="1.5" fill="#00e676" opacity="0.7"/>
+  <circle cx="258" cy="186" r="1.5" fill="#00e676" opacity="0.7"/>
+  <circle cx="248" cy="200" r="1.5" fill="#00e676" opacity="0.7"/>
+  <circle cx="268" cy="200" r="1.5" fill="#00e676" opacity="0.7"/>
+  <circle cx="220" cy="155" r="1.5" fill="#00e676" opacity="0.5"/>
+  <circle cx="296" cy="155" r="1.5" fill="#00e676" opacity="0.5"/>
+  <!-- Landmark lines (mesh) -->
+  <line x1="238" y1="158" x2="278" y2="158" stroke="#00e676" stroke-width="0.5" opacity="0.3"/>
+  <line x1="238" y1="158" x2="258" y2="186" stroke="#00e676" stroke-width="0.5" opacity="0.3"/>
+  <line x1="278" y1="158" x2="258" y2="186" stroke="#00e676" stroke-width="0.5" opacity="0.3"/>
+  <line x1="258" y1="186" x2="248" y2="200" stroke="#00e676" stroke-width="0.5" opacity="0.3"/>
+  <line x1="258" y1="186" x2="268" y2="200" stroke="#00e676" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- ID info overlay at bottom of camera feed -->
+  <rect x="28" y="322" width="460" height="60" fill="#05080f" opacity="0.85"/>
+  <rect x="28" y="322" width="460" height="1" fill="#00e676" opacity="0.4"/>
+  <!-- Student info -->
+  <text x="42" y="340" font-family="monospace" font-size="11" fill="#00e676" font-weight="bold">● MATCH CONFIRMED</text>
+  <text x="260" y="340" font-family="monospace" font-size="10" fill="#4a6a8a">Confidence: 98.4%</text>
+  <text x="42" y="357" font-family="monospace" font-size="13" font-weight="bold" fill="#e2f4ff">Arjun Sharma</text>
+  <text x="42" y="372" font-family="monospace" font-size="10" fill="#64a0c8">ID: CS2024-0147  ·  B.Tech CSE  ·  Sem 5</text>
+  <text x="360" y="357" font-family="monospace" font-size="12" font-weight="bold" fill="#00e676">✓ MARKED</text>
+  <text x="360" y="372" font-family="monospace" font-size="10" fill="#4a8a6a">09:07 AM  Wed</text>
+
+  <!-- Camera feed status bar (top) -->
+  <rect x="28" y="62" width="460" height="18" fill="#05080f" opacity="0.7"/>
+  <text x="36" y="74" font-family="monospace" font-size="9" fill="#00e676" opacity="0.8">● REC</text>
+  <text x="68" y="74" font-family="monospace" font-size="9" fill="#4a6080">CAM-1 · Lab 204</text>
+  <text x="200" y="74" font-family="monospace" font-size="9" fill="#4a6a8a">1920×1080 · 30fps</text>
+  <text x="390" y="74" font-family="monospace" font-size="9" fill="#4a6080">09:07:23 AM</text>
+
+  <!-- Right panel: Attendance list -->
+  <rect x="510" y="52" width="500" height="360" rx="8" fill="url(#panelGrad)" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Right panel header -->
+  <rect x="510" y="52" width="500" height="44" rx="8" fill="#111f35"/>
+  <rect x="510" y="88" width="500" height="8" fill="#111f35"/>
+  <rect x="510" y="96" width="500" height="1" fill="#1e3a5f"/>
+  <text x="526" y="78" font-family="monospace" font-size="12" font-weight="bold" fill="#e2e8f0">Today's Attendance</text>
+  <text x="526" y="91" font-family="monospace" font-size="10" fill="#4a6a8a">CS301 – Data Structures  ·  09:00 AM</text>
+  <!-- Stats pills -->
+  <rect x="780" y="62" width="48" height="18" rx="9" fill="#00e67620"/>
+  <text x="790" y="74" font-family="monospace" font-size="9" fill="#00e676">28 ✓</text>
+  <rect x="834" y="62" width="36" height="18" rx="9" fill="#ff443320"/>
+  <text x="842" y="74" font-family="monospace" font-size="9" fill="#ff5555">4 ✗</text>
+  <rect x="875" y="62" width="26" height="18" rx="9" fill="#ffa50020"/>
+  <text x="880" y="74" font-family="monospace" font-size="9" fill="#ffa500">2 ?</text>
+
+  <!-- Column headers -->
+  <rect x="510" y="97" width="500" height="22" fill="#0d1a2e"/>
+  <text x="526" y="112" font-family="monospace" font-size="9" fill="#3a5878" letter-spacing="1">STUDENT</text>
+  <text x="680" y="112" font-family="monospace" font-size="9" fill="#3a5878" letter-spacing="1">ID</text>
+  <text x="760" y="112" font-family="monospace" font-size="9" fill="#3a5878" letter-spacing="1">TIME</text>
+  <text x="840" y="112" font-family="monospace" font-size="9" fill="#3a5878" letter-spacing="1">METHOD</text>
+  <text x="920" y="112" font-family="monospace" font-size="9" fill="#3a5878" letter-spacing="1">STATUS</text>
+
+  <!-- Attendance rows -->
+  <!-- Row 1 - Arjun (just marked - highlighted) -->
+  <rect x="510" y="119" width="500" height="28" fill="#00e67608"/>
+  <rect x="510" y="119" width="3" height="28" fill="#00e676"/>
+  <circle cx="526" cy="133" r="10" fill="#1a4a3a"/>
+  <text x="520" y="137" font-family="monospace" font-size="10" fill="#00e676">AS</text>
+  <text x="542" y="131" font-family="monospace" font-size="10" fill="#e2f4ff" font-weight="bold">Arjun Sharma</text>
+  <text x="542" y="143" font-family="monospace" font-size="8" fill="#4a7a6a">· just now</text>
+  <text x="672" y="135" font-family="monospace" font-size="9" fill="#64a0c8">CS-0147</text>
+  <text x="752" y="135" font-family="monospace" font-size="9" fill="#e2e8f0">09:07 AM</text>
+  <text x="832" y="135" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="124" width="46" height="14" rx="7" fill="#00e67622"/>
+  <text x="917" y="134" font-family="monospace" font-size="8" fill="#00e676" font-weight="bold">PRESENT</text>
+
+  <!-- Row 2 -->
+  <rect x="510" y="147" width="500" height="28" fill="transparent"/>
+  <rect x="510" y="174" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="161" r="10" fill="#1a2a4a"/>
+  <text x="521" y="165" font-family="monospace" font-size="10" fill="#64a0c8">PV</text>
+  <text x="542" y="159" font-family="monospace" font-size="10" fill="#c8d8e8">Priya Venkatesan</text>
+  <text x="672" y="163" font-family="monospace" font-size="9" fill="#64a0c8">CS-0134</text>
+  <text x="752" y="163" font-family="monospace" font-size="9" fill="#c8d8e8">09:02 AM</text>
+  <text x="832" y="163" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="152" width="46" height="14" rx="7" fill="#00e67618"/>
+  <text x="917" y="162" font-family="monospace" font-size="8" fill="#00e676">PRESENT</text>
+
+  <!-- Row 3 -->
+  <rect x="510" y="175" width="500" height="28" fill="#0d1520" opacity="0.3"/>
+  <rect x="510" y="202" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="189" r="10" fill="#1a2a4a"/>
+  <text x="521" y="193" font-family="monospace" font-size="10" fill="#64a0c8">RK</text>
+  <text x="542" y="187" font-family="monospace" font-size="10" fill="#c8d8e8">Rahul Kumar</text>
+  <text x="672" y="191" font-family="monospace" font-size="9" fill="#64a0c8">CS-0119</text>
+  <text x="752" y="191" font-family="monospace" font-size="9" fill="#c8d8e8">09:04 AM</text>
+  <text x="832" y="191" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="180" width="46" height="14" rx="7" fill="#00e67618"/>
+  <text x="917" y="190" font-family="monospace" font-size="8" fill="#00e676">PRESENT</text>
+
+  <!-- Row 4 -->
+  <rect x="510" y="203" width="500" height="28" fill="transparent"/>
+  <rect x="510" y="230" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="217" r="10" fill="#2a1a1a"/>
+  <text x="521" y="221" font-family="monospace" font-size="10" fill="#ff7070">SM</text>
+  <text x="542" y="215" font-family="monospace" font-size="10" fill="#c8d8e8">Sneha Mehta</text>
+  <text x="672" y="219" font-family="monospace" font-size="9" fill="#64a0c8">CS-0156</text>
+  <text x="752" y="219" font-family="monospace" font-size="9" fill="#c8d8e8">—</text>
+  <text x="832" y="219" font-family="monospace" font-size="8" fill="#4a6080">—</text>
+  <rect x="908" y="208" width="52" height="14" rx="7" fill="#ff443318"/>
+  <text x="913" y="218" font-family="monospace" font-size="8" fill="#ff5555">ABSENT</text>
+
+  <!-- Row 5 -->
+  <rect x="510" y="231" width="500" height="28" fill="#0d1520" opacity="0.3"/>
+  <rect x="510" y="258" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="245" r="10" fill="#1a2a4a"/>
+  <text x="522" y="249" font-family="monospace" font-size="10" fill="#64a0c8">DG</text>
+  <text x="542" y="243" font-family="monospace" font-size="10" fill="#c8d8e8">Dev Gupta</text>
+  <text x="672" y="247" font-family="monospace" font-size="9" fill="#64a0c8">CS-0122</text>
+  <text x="752" y="247" font-family="monospace" font-size="9" fill="#c8d8e8">09:06 AM</text>
+  <text x="832" y="247" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="236" width="46" height="14" rx="7" fill="#00e67618"/>
+  <text x="917" y="246" font-family="monospace" font-size="8" fill="#00e676">PRESENT</text>
+
+  <!-- Row 6 -->
+  <rect x="510" y="259" width="500" height="28" fill="transparent"/>
+  <rect x="510" y="286" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="273" r="10" fill="#1a2a4a"/>
+  <text x="522" y="277" font-family="monospace" font-size="10" fill="#64a0c8">AM</text>
+  <text x="542" y="271" font-family="monospace" font-size="10" fill="#c8d8e8">Anjali Mishra</text>
+  <text x="672" y="275" font-family="monospace" font-size="9" fill="#64a0c8">CS-0103</text>
+  <text x="752" y="275" font-family="monospace" font-size="9" fill="#c8d8e8">08:59 AM</text>
+  <text x="832" y="275" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="264" width="46" height="14" rx="7" fill="#00e67618"/>
+  <text x="917" y="274" font-family="monospace" font-size="8" fill="#00e676">PRESENT</text>
+
+  <!-- Row 7 - Late -->
+  <rect x="510" y="287" width="500" height="28" fill="#0d1520" opacity="0.3"/>
+  <rect x="510" y="314" width="500" height="1" fill="#1a2a40" opacity="0.5"/>
+  <circle cx="526" cy="301" r="10" fill="#2a2010"/>
+  <text x="522" y="305" font-family="monospace" font-size="10" fill="#ffa030">KS</text>
+  <text x="542" y="299" font-family="monospace" font-size="10" fill="#c8d8e8">Karan Singh</text>
+  <text x="672" y="303" font-family="monospace" font-size="9" fill="#64a0c8">CS-0138</text>
+  <text x="752" y="303" font-family="monospace" font-size="9" fill="#ffa030">09:12 AM</text>
+  <text x="832" y="303" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="912" y="292" width="42" height="14" rx="7" fill="#ffa50022"/>
+  <text x="916" y="302" font-family="monospace" font-size="8" fill="#ffa500">LATE</text>
+
+  <!-- Row 8 -->
+  <rect x="510" y="315" width="500" height="28" fill="transparent"/>
+  <circle cx="526" cy="329" r="10" fill="#1a2a4a"/>
+  <text x="521" y="333" font-family="monospace" font-size="10" fill="#64a0c8">NR</text>
+  <text x="542" y="327" font-family="monospace" font-size="10" fill="#c8d8e8">Neha Rao</text>
+  <text x="672" y="331" font-family="monospace" font-size="9" fill="#64a0c8">CS-0162</text>
+  <text x="752" y="331" font-family="monospace" font-size="9" fill="#c8d8e8">09:01 AM</text>
+  <text x="832" y="331" font-family="monospace" font-size="8" fill="#64a0c8">Face ID</text>
+  <rect x="910" y="320" width="46" height="14" rx="7" fill="#00e67618"/>
+  <text x="917" y="330" font-family="monospace" font-size="8" fill="#00e676">PRESENT</text>
+
+  <!-- Row 9 fade -->
+  <rect x="510" y="343" width="500" height="24" fill="transparent"/>
+  <circle cx="526" cy="355" r="10" fill="#1a2a4a" opacity="0.5"/>
+  <text x="521" y="359" font-family="monospace" font-size="10" fill="#64a0c8" opacity="0.5">VN</text>
+  <text x="542" y="353" font-family="monospace" font-size="10" fill="#c8d8e8" opacity="0.5">Vivek Nair</text>
+  <text x="672" y="357" font-family="monospace" font-size="9" fill="#64a0c8" opacity="0.5">CS-0178</text>
+  <text x="752" y="357" font-family="monospace" font-size="9" fill="#c8d8e8" opacity="0.5">09:05 AM</text>
+  <text x="832" y="357" font-family="monospace" font-size="8" fill="#4a6080" opacity="0.5">Face ID</text>
+  <rect x="910" y="348" width="46" height="14" rx="7" fill="#00e67610" opacity="0.5"/>
+  <text x="917" y="358" font-family="monospace" font-size="8" fill="#00e676" opacity="0.5">PRESENT</text>
+
+  <!-- Fade-out overlay for list -->
+  <defs>
+    <linearGradient id="listFade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1520;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#0d1520;stop-opacity:0.9"/>
+    </linearGradient>
+  </defs>
+  <rect x="510" y="340" width="500" height="72" fill="url(#listFade)"/>
+
+  <!-- Bottom status bar -->
+  <rect x="0" y="536" width="1024" height="40" fill="#080e1a"/>
+  <rect x="0" y="536" width="1024" height="1" fill="#1e3a5f" opacity="0.5"/>
+
+  <!-- Status bar content -->
+  <circle cx="22" cy="556" r="5" fill="#00e676"/>
+  <text x="33" y="560" font-family="monospace" font-size="10" fill="#00e676">System Online</text>
+  <!-- Separator -->
+  <rect x="130" y="546" width="1" height="20" fill="#1e3a5f"/>
+  <text x="142" y="560" font-family="monospace" font-size="10" fill="#4a6a8a">Camera: Active (640×480)</text>
+  <rect x="290" y="546" width="1" height="20" fill="#1e3a5f"/>
+  <text x="302" y="560" font-family="monospace" font-size="10" fill="#4a6a8a">Model: FaceNet-512d</text>
+  <rect x="430" y="546" width="1" height="20" fill="#1e3a5f"/>
+  <text x="441" y="560" font-family="monospace" font-size="10" fill="#4a6a8a">Threshold: 0.65</text>
+  <rect x="540" y="546" width="1" height="20" fill="#1e3a5f"/>
+
+  <!-- Progress bar area -->
+  <text x="555" y="552" font-family="monospace" font-size="9" fill="#4a6080">Attendance</text>
+  <rect x="640" y="547" width="120" height="8" rx="4" fill="#0d1a2e"/>
+  <rect x="640" y="547" width="87" height="8" rx="4" fill="#00e676" opacity="0.8"/>
+  <text x="767" y="556" font-family="monospace" font-size="9" fill="#00e676">28/34  (82%)</text>
+
+  <rect x="850" y="546" width="1" height="20" fill="#1e3a5f"/>
+  <text x="860" y="560" font-family="monospace" font-size="10" fill="#4a6a8a">Wednesday, Apr 9 2025</text>
+  <text x="975" y="560" font-family="monospace" font-size="10" fill="#243450">v2.1.0</text>
+</svg>

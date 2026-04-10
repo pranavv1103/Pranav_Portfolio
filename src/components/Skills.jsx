@@ -20,37 +20,37 @@ const colorMap = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-20 bg-[#080c16] overflow-hidden">
+    <section id="skills" className="relative py-20 bg-[#06111d] overflow-hidden">
       {/* Dot pattern background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-[0.12] pointer-events-none" />
       {/* Animated orbs — multi-axis */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-indigo-600/[0.025] blur-3xl pointer-events-none"
-        animate={{ x: [0, 20, 0], y: [0, -15, 0], scale: [1, 1.07, 1] }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[320px] rounded-full bg-indigo-600/[0.018] blur-3xl pointer-events-none"
+        animate={{ x: [0, 14, 0], y: [0, -10, 0], scale: [1, 1.04, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full bg-purple-600/[0.035] blur-3xl pointer-events-none"
-        animate={{ x: [0, -18, 0], y: [0, 22, 0], scale: [1, 1.1, 1] }}
+        className="absolute top-0 right-0 w-[280px] h-[280px] rounded-full bg-purple-600/[0.02] blur-3xl pointer-events-none"
+        animate={{ x: [0, -12, 0], y: [0, 14, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
       <motion.div
-        className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-cyan-600/[0.03] blur-3xl pointer-events-none"
-        animate={{ x: [0, 16, 0], y: [0, -14, 0] }}
+        className="absolute bottom-0 left-0 w-[240px] h-[240px] rounded-full bg-cyan-600/[0.02] blur-3xl pointer-events-none"
+        animate={{ x: [0, 10, 0], y: [0, -8, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 8 }}
       />
       {/* Accent beams */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-px h-56 bg-gradient-to-b from-transparent via-indigo-400/10 to-transparent"
+          className="absolute w-px h-56 bg-gradient-to-b from-transparent via-indigo-400/[0.06] to-transparent"
           style={{ top: '20%', right: '15%', rotate: '18deg', transformOrigin: 'top' }}
-          animate={{ opacity: [0.1, 0.35, 0.1] }}
+          animate={{ opacity: [0.06, 0.16, 0.06] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
         <motion.div
-          className="absolute w-px h-44 bg-gradient-to-b from-transparent via-purple-400/08 to-transparent"
+          className="absolute w-px h-44 bg-gradient-to-b from-transparent via-purple-400/[0.05] to-transparent"
           style={{ bottom: '25%', left: '8%', rotate: '-12deg', transformOrigin: 'top' }}
-          animate={{ opacity: [0.08, 0.28, 0.08] }}
+          animate={{ opacity: [0.05, 0.14, 0.05] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
         />
       </div>
@@ -72,27 +72,34 @@ export default function Skills() {
                 <WaterfallItem key={category}>
                 <SpotlightCard
                   spotlightColor={c.spotlight}
-                  className={`h-full rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm border border-white/[0.06] ${c.hoverBorder} shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
+                  className={`h-full rounded-2xl bg-[#0e1f3a] backdrop-blur-sm border border-white/[0.10] ${c.hoverBorder} shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-300`}
                 >
                   <motion.div
-                    whileHover={{ y: -3, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}
+                    whileHover={{ y: -5, boxShadow: '0 20px 56px rgba(0,0,0,0.6)' }}
                     transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
                     className="h-full p-5">
                     {/* Category header */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`p-2 rounded-lg ${c.bg} border ${c.border} transition-shadow duration-300 group-hover:shadow-[0_0_14px_rgba(99,102,241,0.2)]`}>
+                      <motion.div
+                        animate={{ y: [0, -4, 0], rotate: [0, -4, 4, 0] }}
+                        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                        className={`p-2 rounded-lg ${c.bg} border ${c.border} transition-shadow duration-300 group-hover:shadow-[0_0_16px_rgba(99,102,241,0.3)]`}
+                      >
                         {Icon && <Icon size={16} className={c.icon} />}
-                      </div>
+                      </motion.div>
                       <h3 className="text-sm font-semibold text-slate-300">{category}</h3>
                     </div>
 
                     {/* Skill chips */}
                     <div className="flex flex-wrap gap-2">
-                      {skills.map((skill) => (
+                      {skills.map((skill, sIdx) => (
                         <motion.span
                           key={skill}
-                          whileHover={{ scale: 1.06, y: -1 }}
-                          transition={{ duration: 0.15 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.28, delay: sIdx * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                          whileHover={{ scale: 1.1, y: -2 }}
                           className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium border transition-colors duration-200 cursor-default ${c.chip}`}
                         >
                           {skill}

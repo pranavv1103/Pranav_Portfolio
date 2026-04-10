@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="84" y1="42" x2="816" y2="562" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101828"/>
+      <stop offset="0.5" stop-color="#0D1526"/>
+      <stop offset="1" stop-color="#0A1020"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(694 104) rotate(140.62) scale(372.997 276.213)">
+      <stop stop-color="#7C3AED" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hero" x1="310" y1="182" x2="590" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="600" rx="32" fill="url(#bg)"/>
+  <rect width="900" height="600" rx="32" fill="url(#bloom)"/>
+  <circle cx="164" cy="510" r="172" fill="#2563EB" fill-opacity="0.10"/>
+
+  <rect x="56" y="56" width="788" height="488" rx="30" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
+  <rect x="56" y="56" width="788" height="44" rx="30" fill="#121A2B"/>
+  <circle cx="88" cy="78" r="5.5" fill="#FB7185"/>
+  <circle cx="108" cy="78" r="5.5" fill="#FBBF24"/>
+  <circle cx="128" cy="78" r="5.5" fill="#34D399"/>
+  <rect x="158" y="67" width="230" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.07"/>
+  <text x="176" y="82" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">studysync.app/dashboard/today</text>
+
+  <rect x="76" y="118" width="156" height="404" rx="20" fill="#10192C" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="98" y="154" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="18" font-weight="700">StudySync</text>
+  <rect x="98" y="178" width="84" height="26" rx="13" fill="#8B5CF6" fill-opacity="0.20"/>
+  <text x="123" y="195" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="10" font-weight="700">Today</text>
+  <text x="98" y="242" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10" letter-spacing="1.2">NAVIGATION</text>
+  <text x="98" y="266" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Goals</text>
+  <text x="98" y="294" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Streaks</text>
+  <text x="98" y="322" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Reminders</text>
+  <text x="98" y="350" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Analytics</text>
+  <rect x="98" y="394" width="112" height="82" rx="18" fill="#1E293B"/>
+  <text x="116" y="422" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Partner sync</text>
+  <text x="116" y="452" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">2 online</text>
+
+  <rect x="250" y="118" width="432" height="404" rx="20" fill="#0F172A" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="278" y="152" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Daily momentum</text>
+  <text x="278" y="174" fill="#64748B" font-family="Arial, sans-serif" font-size="12">Goals, streaks, reminders, quiet hours</text>
+
+  <rect x="278" y="194" width="376" height="100" rx="22" fill="url(#hero)"/>
+  <text x="302" y="224" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="12">Streak health</text>
+  <text x="302" y="266" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="40" font-weight="700">87%</text>
+  <path d="M430 258C452 238 474 224 520 204" stroke="#E9D5FF" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="520" cy="204" r="8" fill="#F5F3FF"/>
+  <rect x="548" y="212" width="84" height="62" rx="16" fill="#FFFFFF" fill-opacity="0.14"/>
+  <text x="566" y="238" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="11">On track</text>
+  <text x="566" y="260" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="18" font-weight="700">12 goals</text>
+
+  <rect x="278" y="316" width="180" height="176" rx="20" fill="#121C31"/>
+  <text x="300" y="348" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Goal tracker</text>
+  <rect x="300" y="370" width="136" height="34" rx="12" fill="#FFFFFF" fill-opacity="0.05"/>
+  <text x="318" y="391" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Finish system design notes</text>
+  <rect x="300" y="418" width="136" height="34" rx="12" fill="#FFFFFF" fill-opacity="0.05"/>
+  <text x="318" y="439" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Solve 3 LeetCode problems</text>
+  <rect x="300" y="466" width="136" height="10" rx="5" fill="#22C55E" fill-opacity="0.70"/>
+
+  <rect x="474" y="316" width="180" height="80" rx="20" fill="#121C31"/>
+  <text x="496" y="344" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Reminders today</text>
+  <text x="496" y="376" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="28" font-weight="700">09</text>
+
+  <rect x="474" y="412" width="180" height="80" rx="20" fill="#121C31"/>
+  <text x="496" y="440" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Quiet hours</text>
+  <text x="496" y="472" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">10 PM - 7 AM</text>
+
+  <rect x="700" y="118" width="124" height="404" rx="20" fill="#10192C" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="722" y="152" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Timeline</text>
+  <rect x="722" y="176" width="78" height="46" rx="16" fill="#FFFFFF" fill-opacity="0.04"/>
+  <text x="738" y="196" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="10">Review</text>
+  <text x="738" y="212" fill="#64748B" font-family="Arial, sans-serif" font-size="10">08:00</text>
+  <rect x="722" y="238" width="78" height="46" rx="16" fill="#8B5CF6" fill-opacity="0.14"/>
+  <text x="738" y="258" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="10">Deep work</text>
+  <text x="738" y="274" fill="#DDD6FE" font-family="Arial, sans-serif" font-size="10">10:30</text>
+  <rect x="722" y="300" width="78" height="46" rx="16" fill="#FFFFFF" fill-opacity="0.04"/>
+  <text x="738" y="320" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="10">Reminder</text>
+  <text x="738" y="336" fill="#64748B" font-family="Arial, sans-serif" font-size="10">13:00</text>
+</svg>

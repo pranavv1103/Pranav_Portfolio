@@ -12,12 +12,17 @@
   }
 
   body {
-    background-color: #07090f;
-    color: #f1f5f9;
+    background-color: #010408;
+    color: #e2e8f0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    color-scheme: dark;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
   }
 
   ::selection {
@@ -30,7 +35,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #07090f;
+    background: #010408;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -106,9 +111,21 @@
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Animated gradient border */
@@ -175,8 +192,8 @@
 .glass-premium {
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  background: rgba(11,17,32,0.72);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(15,26,46,0.78);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 /* Gradient border card wrapper */
@@ -253,8 +270,8 @@
 
 /* Dot pattern + grid helpers */
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(99,102,241,0.12) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(99,102,241,0.14) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 .bg-hex-pattern {
   background-image:
@@ -338,6 +355,70 @@
   animation: gradient-drift 18s ease infinite;
 }
 
+/* ─── Card breathing (scale 1→1.012→1) ────────────────────────────────────── */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.012); }
+}
+.animate-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+/* ─── Icon bob ────────────────────────────────────────────────────────────── */
+@keyframes icon-bob {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  30%       { transform: translateY(-4px) rotate(-3deg); }
+  70%       { transform: translateY(-2px) rotate(2deg); }
+}
+.animate-icon-bob {
+  animation: icon-bob 4s ease-in-out infinite;
+}
+
+/* ─── Glow pulse on skill chips ──────────────────────────────────────────── */
+@keyframes chip-glow {
+  0%, 100% { box-shadow: 0 0 0px rgba(99,102,241,0); }
+  50%       { box-shadow: 0 0 8px rgba(99,102,241,0.30); }
+}
+.animate-chip-glow:hover {
+  animation: chip-glow 1.8s ease-in-out infinite;
+}
+
+/* ─── Slow counter-clockwise ring ────────────────────────────────────────── */
+@keyframes orbit-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+.animate-orbit-ccw {
+  animation: orbit-ccw 70s linear infinite;
+}
+
+/* ─── Floating blob morph ─────────────────────────────────────────────────── */
+@keyframes morph-blob {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+  25%       { border-radius: 45% 55% 40% 60% / 45% 50% 60% 55%; }
+  50%       { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
+  75%       { border-radius: 55% 45% 50% 50% / 40% 60% 45% 55%; }
+}
+.animate-morph {
+  animation: morph-blob 12s ease-in-out infinite;
+}
+
+/* ─── Streak wipe (light line passes across an element) ──────────────────── */
+@keyframes streak-wipe {
+  0%   { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(400%) skewX(-12deg); opacity: 0; }
+}
+.animate-streak {
+  animation: streak-wipe 3s ease-in-out infinite;
+}
+
+/* ─── lWave for name letters ─────────────────────────────────────────────── */
+@keyframes lWave {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
 /* ─── Subtle Y-float for icons and decorative elements ───────────────────────── */
 @keyframes icon-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }

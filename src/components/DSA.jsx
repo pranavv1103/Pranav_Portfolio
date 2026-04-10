@@ -37,16 +37,16 @@ function AnimatedCounter({ target, prefix = '', suffix = '' }) {
 }
 
 const accentMap = {
-  indigo:  { card: 'bg-indigo-500/[0.06] border-indigo-500/20', num: 'text-indigo-300', hover: 'group-hover:border-indigo-500/40', spotlight: 'rgba(99,102,241,0.08)', glow: 'rgba(99,102,241,0.15)' },
-  cyan:    { card: 'bg-cyan-500/[0.06]   border-cyan-500/20',   num: 'text-cyan-300',   hover: 'group-hover:border-cyan-500/40',   spotlight: 'rgba(6,182,212,0.08)',  glow: 'rgba(6,182,212,0.15)' },
-  purple:  { card: 'bg-purple-500/[0.06] border-purple-500/20', num: 'text-purple-300', hover: 'group-hover:border-purple-500/40', spotlight: 'rgba(168,85,247,0.08)', glow: 'rgba(168,85,247,0.15)' },
-  amber:   { card: 'bg-amber-500/[0.06]  border-amber-500/20',  num: 'text-amber-300',  hover: 'group-hover:border-amber-500/40',  spotlight: 'rgba(245,158,11,0.08)', glow: 'rgba(245,158,11,0.15)' },
-  emerald: { card: 'bg-emerald-500/[0.06] border-emerald-500/20', num: 'text-emerald-300', hover: 'group-hover:border-emerald-500/40', spotlight: 'rgba(16,185,129,0.08)', glow: 'rgba(16,185,129,0.15)' },
+  indigo:  { card: 'bg-[#0e1f3a] border-indigo-500/25', num: 'text-indigo-300', hover: 'group-hover:border-indigo-500/50', spotlight: 'rgba(99,102,241,0.08)', glow: 'rgba(99,102,241,0.18)' },
+  cyan:    { card: 'bg-[#0e1f3a] border-cyan-500/25',   num: 'text-cyan-300',   hover: 'group-hover:border-cyan-500/50',   spotlight: 'rgba(6,182,212,0.08)',  glow: 'rgba(6,182,212,0.18)' },
+  purple:  { card: 'bg-[#0e1f3a] border-purple-500/25', num: 'text-purple-300', hover: 'group-hover:border-purple-500/50', spotlight: 'rgba(168,85,247,0.08)', glow: 'rgba(168,85,247,0.18)' },
+  amber:   { card: 'bg-[#0e1f3a] border-amber-500/25',  num: 'text-amber-300',  hover: 'group-hover:border-amber-500/50',  spotlight: 'rgba(245,158,11,0.08)', glow: 'rgba(245,158,11,0.18)' },
+  emerald: { card: 'bg-[#0e1f3a] border-emerald-500/25', num: 'text-emerald-300', hover: 'group-hover:border-emerald-500/50', spotlight: 'rgba(16,185,129,0.08)', glow: 'rgba(16,185,129,0.18)' },
 }
 
 export default function DSA() {
   return (
-    <section id="dsa" className="relative py-20 bg-[#07090f] overflow-hidden">
+    <section id="dsa" className="relative py-20 bg-[#060b18] overflow-hidden">
       <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
       {/* Ambient orbs */}
       <motion.div

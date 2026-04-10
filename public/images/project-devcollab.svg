@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="86" y1="46" x2="818" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101828"/>
+      <stop offset="0.52" stop-color="#0C1525"/>
+      <stop offset="1" stop-color="#0A1020"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(716 118) rotate(142.415) scale(386.913 277.794)">
+      <stop stop-color="#2563EB" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="messageGlow" x1="404" y1="286" x2="630" y2="374" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D4ED8"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="600" rx="32" fill="url(#bg)"/>
+  <rect width="900" height="600" rx="32" fill="url(#bloom)"/>
+  <circle cx="174" cy="512" r="170" fill="#0891B2" fill-opacity="0.10"/>
+
+  <rect x="56" y="56" width="788" height="488" rx="30" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
+  <rect x="56" y="56" width="788" height="44" rx="30" fill="#121A2B"/>
+  <circle cx="88" cy="78" r="5.5" fill="#FB7185"/>
+  <circle cx="108" cy="78" r="5.5" fill="#FBBF24"/>
+  <circle cx="128" cy="78" r="5.5" fill="#34D399"/>
+  <rect x="158" y="67" width="250" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.07"/>
+  <text x="176" y="82" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">devcollab.app/workspaces/platform-team/backend-general</text>
+
+  <rect x="76" y="118" width="68" height="404" rx="20" fill="#111A2E" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <circle cx="110" cy="156" r="15" fill="#2563EB"/>
+  <circle cx="110" cy="206" r="15" fill="#0F766E"/>
+  <circle cx="110" cy="256" r="15" fill="#7C3AED"/>
+  <circle cx="110" cy="306" r="15" fill="#1E293B"/>
+  <circle cx="110" cy="356" r="15" fill="#1E293B"/>
+
+  <rect x="160" y="118" width="170" height="404" rx="20" fill="#10192C" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="184" y="154" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="16" font-weight="700">Platform Team</text>
+  <rect x="184" y="176" width="74" height="24" rx="12" fill="#2563EB" fill-opacity="0.20"/>
+  <text x="204" y="192" fill="#DBEAFE" font-family="Arial, sans-serif" font-size="10" font-weight="700">Backend</text>
+  <text x="184" y="232" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10" letter-spacing="1.2">CHANNELS</text>
+  <rect x="184" y="248" width="122" height="34" rx="12" fill="#FFFFFF" fill-opacity="0.05"/>
+  <text x="202" y="269" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12"># general</text>
+  <text x="184" y="298" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12"># api-design</text>
+  <text x="184" y="326" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12"># websocket</text>
+  <text x="184" y="354" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12"># release-room</text>
+  <text x="184" y="408" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10" letter-spacing="1.2">DIRECT MESSAGES</text>
+  <text x="184" y="432" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Aisha</text>
+  <text x="184" y="460" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Rohan</text>
+
+  <rect x="348" y="118" width="334" height="404" rx="20" fill="#0F172A" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="376" y="152" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="18" font-weight="700"># general</text>
+  <text x="376" y="172" fill="#64748B" font-family="Arial, sans-serif" font-size="11">Realtime delivery, threads, AI summaries</text>
+
+  <rect x="376" y="206" width="278" height="60" rx="18" fill="#FFFFFF" fill-opacity="0.04"/>
+  <circle cx="406" cy="236" r="16" fill="#3B82F6"/>
+  <text x="432" y="229" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="13" font-weight="700">Priya</text>
+  <text x="432" y="247" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Shipped the reconnect fix for channel presence.</text>
+
+  <rect x="404" y="286" width="226" height="88" rx="18" fill="url(#messageGlow)"/>
+  <text x="424" y="318" fill="#E0F2FE" font-family="Courier New, monospace" font-size="13">socket.emit('message', payload)</text>
+  <text x="424" y="342" fill="#BAE6FD" font-family="Courier New, monospace" font-size="13">syncPresence(workspaceId, members)</text>
+
+  <rect x="376" y="394" width="278" height="60" rx="18" fill="#FFFFFF" fill-opacity="0.04"/>
+  <circle cx="406" cy="424" r="16" fill="#14B8A6"/>
+  <text x="432" y="417" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="13" font-weight="700">AI Assistant</text>
+  <text x="432" y="435" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="12">Summary ready: 3 decisions, 2 open actions.</text>
+
+  <rect x="700" y="118" width="124" height="404" rx="20" fill="#10192C" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="722" y="152" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Thread</text>
+  <rect x="722" y="170" width="78" height="26" rx="13" fill="#0EA5E9" fill-opacity="0.18"/>
+  <text x="739" y="187" fill="#E0F2FE" font-family="Arial, sans-serif" font-size="10" font-weight="700">Summarize</text>
+  <text x="722" y="236" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Participants</text>
+  <circle cx="736" cy="262" r="7" fill="#3B82F6"/>
+  <circle cx="760" cy="262" r="7" fill="#14B8A6"/>
+  <circle cx="784" cy="262" r="7" fill="#8B5CF6"/>
+  <text x="722" y="308" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Unread</text>
+  <text x="722" y="338" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">18</text>
+  <text x="722" y="390" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Health</text>
+  <path d="M722 426C736 412 752 406 770 394C782 386 792 380 804 364" stroke="#93C5FD" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="804" cy="364" r="5" fill="#E0F2FE"/>
+</svg>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { X, Sparkles, ChevronRight, Zap } from 'lucide-react'
+import { X, Sparkles, ChevronRight, Zap, Github } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
 import { SpotlightCard } from './ui/SpotlightCard'
 import { TechBadge } from './ui/Badge'
@@ -9,7 +9,7 @@ import { projects } from '../data'
 
 function MetricPill({ label, value }) {
   return (
-    <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+    <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-[#091422] border border-white/[0.06]">
       <span className="text-lg font-bold text-indigo-300 tabular-nums">{value}</span>
       <span className="text-[10px] text-slate-500 mt-0.5 font-medium tracking-wide text-center leading-tight">{label}</span>
     </div>
@@ -74,10 +74,10 @@ function ProjectModal({ project, onClose }) {
       >
         {/* Gradient border wrapper */}
         <div className="p-[1px] rounded-2xl bg-gradient-to-br from-indigo-500/30 via-white/[0.04] to-purple-500/20">
-        <div className="rounded-[calc(1rem-1px)] bg-[#0b1222] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-[calc(1rem-1px)] bg-[#0e1f3a] border border-white/[0.06] overflow-hidden">
         {/* Header */}
         <div className={`relative h-32 bg-gradient-to-br ${project.gradient} rounded-t-2xl overflow-hidden`}>
-          <div className="absolute inset-0 bg-[#0b1222]/75" />
+          <div className="absolute inset-0 bg-[#0e1f3a]/78" />
           <div
             className="absolute inset-0 opacity-[0.05]"
             style={{
@@ -157,23 +157,39 @@ function ProjectModal({ project, onClose }) {
 
 // ── Project image banner ──────────────────────────────────────────────────────
 const bannerImages = {
-  1: '/images/project-phoenix.jpg',
-  2: '/images/project-devcollab.jpg',
-  3: '/images/project-studysync.jpg',
-  4: '/images/project-attendance.jpg',
+  1: '/images/project-phoenix-web.png',
+  2: '/images/project-devcollab-web.png',
+  3: '/images/project-studysync-web.png',
+  4: '/images/project-attendance-web.svg',
+}
+
+const bannerImageClasses = {
+  1: 'object-top brightness-[1.08] contrast-[1.05] saturate-[0.98]',
+  2: 'object-top brightness-[1.04] contrast-[1.07] saturate-[0.96]',
+  3: 'object-top brightness-[1.02] contrast-[1.03] saturate-[0.96]',
+  4: 'object-center brightness-[1.02] contrast-[1.03] saturate-[1.0]',
+}
+
+const bannerHighlights = {
+  1: 'Editor + publishing dashboard',
+  2: 'Workspace chat + AI tools',
+  3: 'Goal tracking + accountability UI',
+  4: 'Face recognition + attendance dashboard',
 }
 
 function ProjectBanner({ project }) {
   return (
-    <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
-      {/* Real photo */}
+    <div className="relative aspect-[16/10] w-full overflow-hidden flex-shrink-0 border-b border-white/[0.08] bg-[#091422]">
       <img
         src={bannerImages[project.id]}
         alt={project.name}
-        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07] group-hover:-translate-y-1.5 group-hover:translate-x-[0.5%] ${bannerImageClasses[project.id]}`}
       />
-      {/* Dark gradient overlay — bottom fade into card body */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/50 to-black/30" />
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-[0.08] mix-blend-screen`} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_28%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#010408]/46 via-[#010408]/18 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0e1f3a]/78 via-[#0e1f3a]/14 to-transparent" />
+      <div className="absolute inset-0 ring-1 ring-inset ring-white/[0.05] pointer-events-none" />
       {/* Top chrome row */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-black/40 backdrop-blur-sm border-b border-white/[0.08] flex items-center gap-1.5 px-3">
         <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
@@ -186,9 +202,16 @@ function ProjectBanner({ project }) {
           {project.category}
         </span>
       </div>
-      {/* Project name overlay at bottom */}
-      <div className="absolute bottom-3 left-4">
-        <span className="text-xs font-semibold text-white/70 tracking-wide">{project.tagline.split(' ').slice(0, 6).join(' ')}…</span>
+      <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3">
+        <div className="max-w-[72%] rounded-full border border-white/[0.08] bg-[#08111f]/72 px-3 py-1.5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.28)]">
+          <span className="text-[11px] font-semibold text-white/88 tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]">
+            {bannerHighlights[project.id]}
+          </span>
+        </div>
+        <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-black/24 px-2.5 py-1 text-[10px] font-mono text-white/72 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/85 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
+          Live UI
+        </div>
       </div>
     </div>
   )
@@ -198,7 +221,7 @@ function ProjectCard({ project, onClick }) {
   return (
     <TiltCard
       onClick={onClick}
-      className="group relative flex flex-col h-full rounded-2xl bg-[#0b1120]/85 backdrop-blur-sm border border-white/[0.06] overflow-hidden cursor-pointer shadow-[0_2px_20px_rgba(0,0,0,0.4)] hover:border-indigo-500/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.12)] transition-all duration-300"
+      className="group relative flex flex-col h-full rounded-2xl bg-[#0e1f3a] border border-white/[0.11] overflow-hidden cursor-pointer shadow-[0_10px_34px_rgba(0,0,0,0.46),0_1px_0_rgba(255,255,255,0.03)_inset] hover:border-indigo-500/38 hover:shadow-[0_18px_64px_rgba(0,0,0,0.62),0_0_0_1px_rgba(99,102,241,0.18)] transition-all duration-300"
       style={{ willChange: 'transform' }}
     >
       {/* ── Project visual banner ── */}
@@ -208,7 +231,28 @@ function ProjectCard({ project, onClick }) {
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative flex flex-col flex-1 p-6">
-        <div className="flex items-center justify-end mb-4">
+        <div className="flex items-center justify-between mb-4 gap-3">
+          <a
+            href={project.repoUrl || undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.stopPropagation()
+              if (!project.repoUrl) {
+                e.preventDefault()
+              }
+            }}
+            aria-label={project.repoUrl ? `${project.name} GitHub repository` : `${project.name} repository unavailable`}
+            title={project.repoUrl ? 'Open GitHub repository' : 'Repository URL not added yet'}
+            className={`inline-flex items-center justify-center w-9 h-9 rounded-xl border transition-all duration-200 ${
+              project.repoUrl
+                ? 'text-slate-400 border-white/[0.08] bg-white/[0.03] hover:text-white hover:border-white/18 hover:bg-white/[0.06] hover:-translate-y-0.5'
+                : 'text-slate-600 border-white/[0.05] bg-white/[0.02] cursor-not-allowed opacity-60'
+            }`}
+          >
+            <Github size={16} />
+          </a>
+
           {project.featured && (
             <span className="flex items-center gap-1 text-[10px] font-semibold text-slate-500 bg-white/[0.04] border border-white/[0.07] px-2 py-0.5 rounded-full">
               <Sparkles size={9} />
@@ -220,7 +264,7 @@ function ProjectCard({ project, onClick }) {
         <h3 className="text-xl font-bold text-slate-100 mb-2.5 leading-tight group-hover:text-indigo-200 transition-colors duration-200">
           {project.name}
         </h3>
-        <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1">
+        <p className="text-sm text-slate-400 leading-relaxed mb-5 flex-1">
           {project.tagline}
         </p>
 
@@ -237,7 +281,7 @@ function ProjectCard({ project, onClick }) {
             {project.metrics.slice(0, 3).map((m) => (
               <div
                 key={m.label}
-                className="text-center py-2.5 px-3 rounded-xl bg-white/[0.025] border border-white/[0.05]"
+                className="text-center py-2.5 px-3 rounded-xl bg-[#091422] border border-white/[0.07]"
               >
                 <div className="text-sm font-bold text-indigo-300 tabular-nums">{m.value}</div>
                 <div className="text-[9px] text-slate-600 mt-0.5 leading-tight">{m.label}</div>
@@ -270,26 +314,27 @@ export default function Projects() {
   const [selected, setSelected] = useState(null)
 
   return (
-    <section id="projects" className="relative py-20 bg-[#07090f] overflow-hidden">
+    <section id="projects" className="relative py-20 bg-[#03060c] overflow-hidden">
       {/* Dot pattern background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-35 pointer-events-none" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-[0.16] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.015),transparent_22%,transparent_78%,rgba(255,255,255,0.015))] pointer-events-none" />
       {/* Ambient orbs */}
       <motion.div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/[0.1] rounded-full blur-3xl pointer-events-none"
-        animate={{ x: [0, 20, 0], y: [0, -14, 0], scale: [1, 1.06, 1] }}
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[760px] h-[340px] bg-indigo-950/[0.08] rounded-full blur-3xl pointer-events-none"
+        animate={{ x: [0, 16, 0], y: [0, -10, 0], scale: [1, 1.04, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute -top-20 -right-24 w-[360px] h-[360px] rounded-full bg-purple-700/[0.04] blur-3xl pointer-events-none"
-        animate={{ x: [0, -16, 0], y: [0, 18, 0] }}
+        className="absolute -top-20 -right-24 w-[320px] h-[320px] rounded-full bg-slate-700/[0.035] blur-3xl pointer-events-none"
+        animate={{ x: [0, -12, 0], y: [0, 14, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
       {/* Accent beam */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-px h-60 bg-gradient-to-b from-transparent via-indigo-400/08 to-transparent"
+          className="absolute w-px h-56 bg-gradient-to-b from-transparent via-indigo-400/[0.05] to-transparent"
           style={{ top: '15%', left: '6%', rotate: '18deg', transformOrigin: 'top' }}
-          animate={{ opacity: [0.08, 0.25, 0.08] }}
+          animate={{ opacity: [0.04, 0.14, 0.04] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>

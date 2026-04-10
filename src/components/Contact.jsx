@@ -8,8 +8,8 @@ const links = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'pranavtej.lalapeta@gmail.com',
-    href: 'mailto:pranavtej.lalapeta@gmail.com',
+    value: 'pranavlalapeta@gmail.com',
+    href: 'mailto:pranavlalapeta@gmail.com',
     color: 'indigo',
   },
   {
@@ -53,16 +53,16 @@ export default function Contact() {
     const { name, email, message } = form
     const subject = encodeURIComponent(`Portfolio contact from ${name}`)
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
-    window.open(`mailto:pranavtej.lalapeta@gmail.com?subject=${subject}&body=${body}`, '_blank')
+    window.open(`mailto:pranavlalapeta@gmail.com?subject=${subject}&body=${body}`, '_blank')
     setSent(true)
     setTimeout(() => setSent(false), 4000)
   }
 
   return (
-    <section id="contact" className="relative py-20 bg-[#07090f] overflow-hidden">
+    <section id="contact" className="relative py-20 bg-[#060b18] overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
       {/* Dot pattern background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-[0.18] pointer-events-none" />
 
       {/* Animated orbs — multi-axis */}
       <motion.div
@@ -116,7 +116,7 @@ export default function Contact() {
               Contact
               <span className="w-6 h-[1px] bg-indigo-400/60" />
             </span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-100 leading-[1.1] mb-4">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.1] mb-4">
               Let's build something.
             </h2>
             <p className="text-slate-400 text-base leading-relaxed max-w-xl mx-auto">
@@ -133,7 +133,7 @@ export default function Contact() {
             <WaterfallItem>
               <SpotlightCard
                 spotlightColor="rgba(99,102,241,0.07)"
-                className="rounded-2xl border border-white/[0.07] bg-[#0b1120]/80 backdrop-blur-sm p-7"
+                className="rounded-2xl border border-white/[0.10] bg-[#0e1f3a] backdrop-blur-sm p-7"
               >
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   {/* Name */}
@@ -190,10 +190,18 @@ export default function Contact() {
                   {/* Send button */}
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02, boxShadow: '0 0 40px rgba(99,102,241,0.45)' }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 shadow-[0_0_28px_rgba(99,102,241,0.3)]"
+                    whileHover={{ scale: 1.03, boxShadow: '0 0 48px rgba(99,102,241,0.55)' }}
+                    whileTap={{ scale: 0.97 }}
+                    className="relative overflow-hidden w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 shadow-[0_0_28px_rgba(99,102,241,0.3)]"
                   >
+                    {/* Shimmer sweep */}
+                    <motion.span
+                      className="absolute inset-0 pointer-events-none"
+                      style={{ background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.14) 50%, transparent 60%)' }}
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '200%' }}
+                      transition={{ duration: 0.55, ease: 'easeInOut' }}
+                    />
                     {sent ? (
                       <>Opening mail client<span className="animate-pulse">…</span></>
                     ) : (
@@ -215,13 +223,17 @@ export default function Contact() {
                       className={`group flex items-center gap-4 p-4 rounded-xl border ${c.border} ${c.bg} ${c.hover} backdrop-blur-sm transition-all duration-200`}
                     >
                       <motion.div
-                        whileHover={{ y: -2, x: 1 }}
+                        whileHover={{ x: 4 }}
                         transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="flex items-center gap-4 w-full"
                       >
-                        <div className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0">
+                        <motion.div
+                          whileHover={{ scale: 1.15, rotate: -5 }}
+                          transition={{ duration: 0.2 }}
+                          className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0"
+                        >
                           <Icon size={16} className="text-slate-400 group-hover:text-slate-200 transition-colors" />
-                        </div>
+                        </motion.div>
                         <div className="flex-1 min-w-0">
                           <div className="text-xs text-slate-600 font-medium mb-0.5">{label}</div>
                           <div className="text-sm text-slate-300 font-medium truncate">{value}</div>
@@ -242,15 +254,23 @@ export default function Contact() {
 
               {/* Resume download */}
               <WaterfallItem>
-                <a
+                <motion.a
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 border border-white/10 hover:border-white/25 px-5 py-2.5 rounded-xl transition-all duration-200 hover:bg-white/5 w-full justify-center"
+                  whileHover={{ scale: 1.02, borderColor: 'rgba(255,255,255,0.28)', backgroundColor: 'rgba(255,255,255,0.05)' }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 border border-white/10 px-5 py-2.5 rounded-xl transition-colors duration-200 w-full justify-center"
                 >
-                  <Download size={14} />
+                  <motion.span
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Download size={14} />
+                  </motion.span>
                   Download Resume
-                </a>
+                </motion.a>
               </WaterfallItem>
             </div>
 

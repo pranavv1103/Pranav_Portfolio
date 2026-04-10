@@ -63,6 +63,7 @@ export const projects = [
   {
     id: 1,
     name: 'Phoenix',
+    repoUrl: 'https://github.com/pranavv1103/Phoenix',
     tagline: 'Content publishing platform engineered to production SaaS depth with JWT security, AI editorial features, and granular feed logic.',
     description:
       'Phoenix is a full-stack publishing platform built with the architecture of a real SaaS product. It implements layered security, a complete content lifecycle, AI-powered editorial features, and granular feed personalization across a structured Spring Boot REST API backed by a React frontend.',
@@ -87,6 +88,7 @@ export const projects = [
   {
     id: 2,
     name: 'DevCollab',
+    repoUrl: 'https://github.com/pranavv1103/DevCollab',
     tagline: 'Real-time developer collaboration platform with hierarchical workspaces, persistent channels, and inline AI tools.',
     description:
       'DevCollab is a developer-first real-time collaboration platform with hierarchical workspace organization, persistent channel history, and WebSocket-driven messaging. It integrates AI-powered code explanation and thread summarization directly into the conversation context, reducing context-switching for engineering teams.',
@@ -108,6 +110,7 @@ export const projects = [
   {
     id: 3,
     name: 'StudySync',
+    repoUrl: 'https://github.com/pranavv1103/StudySync',
     tagline: 'Two-user accountability platform with synchronized state, intelligent notification scheduling, and deduplication logic.',
     description:
       'StudySync is a two-user accountability platform designed around consistent shared state and intelligent notification scheduling. It solves the synchronization problem in shared goal tracking by combining Socket.IO event propagation, Prisma-managed transactional writes, cron-based reminders with quiet-hour support, and deduplication logic to prevent notification flooding.',
@@ -131,6 +134,7 @@ export const projects = [
   {
     id: 4,
     name: 'Smart Attendance with AI',
+    repoUrl: null,
     tagline: 'Computer vision attendance system with dual-layer fraud prevention, 97% recognition accuracy, and automated reporting.',
     description:
       'A production-grade computer vision attendance system built to eliminate manual check-ins and proxy fraud. It runs a two-stage verification pipeline combining CNN and HOG-based facial recognition with time-bound QR code validation, backed by a Django REST API, a full Tkinter GUI, and automated Pandas reporting across 150+ records.',

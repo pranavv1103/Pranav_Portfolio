@@ -8,28 +8,28 @@ import { experience } from '../data'
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-20 bg-[#080c16] overflow-hidden">
+    <section id="experience" className="relative py-20 bg-[#08111f] overflow-hidden">
       {/* Dot pattern background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-[0.12] pointer-events-none" />
       {/* Subtle top border glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/14 via-indigo-500/[0.07] to-transparent pointer-events-none" />
       {/* Ambient orbs — multi-axis */}
       <motion.div
-        className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-indigo-600/[0.03] blur-3xl pointer-events-none"
-        animate={{ x: [0, -22, 0], y: [0, 18, 0], scale: [1, 1.1, 1] }}
+        className="absolute -top-20 right-0 w-[420px] h-[420px] rounded-full bg-indigo-600/[0.02] blur-3xl pointer-events-none"
+        animate={{ x: [0, -14, 0], y: [0, 12, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-purple-600/[0.025] blur-3xl pointer-events-none"
-        animate={{ x: [0, 18, 0], y: [0, -14, 0] }}
+        className="absolute bottom-20 -left-20 w-[320px] h-[320px] rounded-full bg-purple-600/[0.018] blur-3xl pointer-events-none"
+        animate={{ x: [0, 12, 0], y: [0, -10, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
       />
       {/* Accent beam */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-px h-60 bg-gradient-to-b from-transparent via-indigo-400/08 to-transparent"
+          className="absolute w-px h-60 bg-gradient-to-b from-transparent via-indigo-400/[0.05] to-transparent"
           style={{ top: '25%', right: '8%', rotate: '14deg', transformOrigin: 'top' }}
-          animate={{ opacity: [0.08, 0.28, 0.08] }}
+          animate={{ opacity: [0.04, 0.12, 0.04] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
         />
       </div>
@@ -53,11 +53,16 @@ export default function Experience() {
                     {/* Timeline dot */}
                     <div className="absolute -left-[2.35rem] md:-left-[3.35rem] top-5 w-3 h-3">
                       <motion.div
-                        animate={{ scale: [1, 2.4, 1], opacity: [0.45, 0, 0.45] }}
-                        transition={{ duration: 2.8, repeat: Infinity, ease: 'easeOut' }}
-                        className="absolute inset-0 rounded-full bg-indigo-500/50"
+                        animate={{ scale: [1, 2.8, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
+                        className="absolute inset-0 rounded-full bg-indigo-500/60"
                       />
-                      <div className="relative w-full h-full rounded-full bg-indigo-500 border-2 border-[#080c16] shadow-[0_0_10px_rgba(99,102,241,0.5)] group-hover:scale-125 transition-transform duration-300" />
+                      <motion.div
+                        animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', delay: 0.8 }}
+                        className="absolute inset-0 rounded-full bg-indigo-400/40"
+                      />
+                      <div className="relative w-full h-full rounded-full bg-indigo-500 border-2 border-[#070e1c] shadow-[0_0_14px_rgba(99,102,241,0.7)] group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.9)] transition-all duration-300" />
                     </div>
 
                     <SpotlightCard
@@ -65,9 +70,9 @@ export default function Experience() {
                       className="rounded-2xl"
                     >
                     <motion.div
-                      whileHover={{ y: -2, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}
+                      whileHover={{ y: -3, x: 3, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
                       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="p-6 sm:p-7 rounded-2xl bg-[#0b1120]/80 backdrop-blur-sm border border-white/[0.06] group-hover:border-indigo-500/25 shadow-[0_2px_16px_rgba(0,0,0,0.35)] transition-colors duration-300"
+                      className="p-6 sm:p-7 rounded-2xl bg-[#0e1f3a] backdrop-blur-sm border border-white/[0.10] group-hover:border-indigo-500/32 shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-colors duration-300"
                     >
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
@@ -77,12 +82,12 @@ export default function Experience() {
                             <span className="flex items-center gap-1.5 text-sm font-semibold text-indigo-400">
                               <Briefcase size={13} />{job.company}
                             </span>
-                            <span className="flex items-center gap-1 text-xs text-slate-500">
+                            <span className="flex items-center gap-1 text-xs text-slate-400">
                               <MapPin size={11} />{job.location}
                             </span>
                           </div>
                         </div>
-                        <div className="shrink-0 flex items-center gap-1.5 text-xs text-slate-500 font-mono bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-lg">
+                        <div className="shrink-0 flex items-center gap-1.5 text-xs text-slate-400 font-mono bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-lg">
                           <Calendar size={12} />{job.period}
                         </div>
                       </div>
@@ -90,8 +95,14 @@ export default function Experience() {
                       {/* Highlights */}
                       <ul className="flex flex-col gap-2.5 mb-5">
                         {job.highlights.map((h) => (
-                          <li key={h} className="flex items-start gap-2.5 text-sm text-slate-400 leading-relaxed">
-                            <CheckCircle2 size={14} className="text-indigo-500 shrink-0 mt-0.5" />
+                          <li key={h} className="flex items-start gap-2.5 text-sm text-slate-300 leading-relaxed">
+                            <motion.span
+                              whileHover={{ scale: 1.3, rotate: 10 }}
+                              transition={{ duration: 0.18 }}
+                              className="shrink-0 mt-0.5"
+                            >
+                              <CheckCircle2 size={14} className="text-indigo-500" />
+                            </motion.span>
                             {h}
                           </li>
                         ))}

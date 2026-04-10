@@ -70,10 +70,11 @@ export function SpotlightCard({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.012, transition: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] } }}
       style={
         tilt
-          ? { rotateX: tiltX, rotateY: tiltY, transformPerspective: 900 }
-          : {}
+          ? { rotateX: tiltX, rotateY: tiltY, transformPerspective: 900, willChange: 'transform' }
+          : { willChange: 'transform' }
       }
       className={`relative group ${className}`}
     >
@@ -87,8 +88,13 @@ export function SpotlightCard({
         className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
           background:
-            'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%, rgba(0,0,0,0.12) 100%)',
+            'linear-gradient(135deg, rgba(255,255,255,0.025) 0%, transparent 50%, rgba(0,0,0,0.08) 100%)',
         }}
+      />
+      {/* Hover glow ring */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px z-[0] rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+        style={{ boxShadow: '0 0 0 1px rgba(99,102,241,0.14), 0 8px 28px rgba(99,102,241,0.08)' }}
       />
       {/* Content */}
       <div className="relative z-[2] h-full">{children}</div>

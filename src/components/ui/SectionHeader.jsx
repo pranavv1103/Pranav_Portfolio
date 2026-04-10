@@ -17,7 +17,7 @@ function AnimatedTitle({ text }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="text-3xl sm:text-[2.25rem] font-bold text-slate-100 leading-tight tracking-tight flex flex-wrap gap-x-[0.35em] gap-y-0 justify-center"
+      className="text-3xl sm:text-[2.25rem] font-bold text-white leading-tight tracking-tight flex flex-wrap gap-x-[0.35em] gap-y-0 justify-center"
     >
       {words.map((word, i) => (
         <motion.span key={i} custom={i} variants={wordVariants} className="inline-block">
@@ -45,11 +45,11 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
           {/* Glow bloom behind the pill */}
           <motion.div
             className="absolute inset-0 rounded-full blur-md opacity-60 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.18), transparent 70%)' }}
-            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.65, 0.3] }}
+            style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.14), transparent 70%)' }}
+            animate={{ scale: [1, 1.18, 1], opacity: [0.22, 0.42, 0.22] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <span className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/[0.07] border border-indigo-500/20 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-400 uppercase shadow-[0_0_20px_rgba(99,102,241,0.1)]">
+          <span className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/[0.09] border border-indigo-500/24 text-[10px] font-mono font-semibold tracking-[0.2em] text-indigo-300 uppercase shadow-[0_0_16px_rgba(99,102,241,0.08)]">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_6px_rgba(99,102,241,0.7)] animate-pulse" />
             {eyebrow}
           </span>
@@ -60,7 +60,7 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className={`text-3xl sm:text-[2.25rem] font-bold text-slate-100 leading-tight tracking-tight flex flex-wrap gap-x-[0.35em] gap-y-0 ${titleAlignClass}`}
+        className={`text-3xl sm:text-[2.25rem] font-bold text-white leading-tight tracking-tight flex flex-wrap gap-x-[0.35em] gap-y-0 ${titleAlignClass}`}
       >
         {title.split(' ').map((word, i) => (
           <motion.span key={i} custom={i} variants={wordVariants} className="inline-block">
@@ -75,7 +75,7 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'center' }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.3, ease: 'easeOut' }}
-          className="max-w-xl text-slate-500/90 text-[0.9375rem] leading-relaxed"
+          className="max-w-2xl text-slate-300 text-[0.9375rem] leading-relaxed"
         >
           {subtitle}
         </motion.p>

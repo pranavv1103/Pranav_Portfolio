@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="46" x2="818" y2="562" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101828"/>
+      <stop offset="0.5" stop-color="#0D1526"/>
+      <stop offset="1" stop-color="#0A1020"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(714 112) rotate(141.163) scale(384.141 279.159)">
+      <stop stop-color="#0284C7" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#0284C7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="600" rx="32" fill="url(#bg)"/>
+  <rect width="900" height="600" rx="32" fill="url(#bloom)"/>
+  <circle cx="170" cy="508" r="170" fill="#16A34A" fill-opacity="0.08"/>
+
+  <rect x="56" y="56" width="788" height="488" rx="30" fill="#0B1220" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="2"/>
+  <rect x="56" y="56" width="788" height="44" rx="30" fill="#121A2B"/>
+  <circle cx="88" cy="78" r="5.5" fill="#FB7185"/>
+  <circle cx="108" cy="78" r="5.5" fill="#FBBF24"/>
+  <circle cx="128" cy="78" r="5.5" fill="#34D399"/>
+  <rect x="158" y="67" width="254" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.07"/>
+  <text x="176" y="82" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">attendance.ai/live/room-204/session-a12</text>
+
+  <rect x="76" y="118" width="506" height="404" rx="20" fill="#0F172A" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="104" y="152" fill="#93C5FD" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">LIVE CAMERA FEED</text>
+  <rect x="104" y="176" width="450" height="286" rx="22" fill="#101826" stroke="#FFFFFF" stroke-opacity="0.05"/>
+
+  <circle cx="188" cy="308" r="44" fill="#243244"/>
+  <rect x="146" y="360" width="84" height="70" rx="28" fill="#243244"/>
+  <circle cx="334" cy="286" r="50" fill="#334155"/>
+  <rect x="286" y="346" width="96" height="82" rx="30" fill="#334155"/>
+  <circle cx="472" cy="314" r="42" fill="#243244"/>
+  <rect x="432" y="364" width="82" height="66" rx="26" fill="#243244"/>
+
+  <rect x="152" y="274" width="72" height="86" rx="10" stroke="#38BDF8" stroke-width="4"/>
+  <rect x="294" y="248" width="82" height="96" rx="10" stroke="#4ADE80" stroke-width="4"/>
+  <rect x="438" y="280" width="68" height="82" rx="10" stroke="#22D3EE" stroke-width="4"/>
+
+  <rect x="152" y="368" width="72" height="18" rx="9" fill="#38BDF8" fill-opacity="0.16"/>
+  <text x="175" y="381" fill="#E0F2FE" font-family="Arial, sans-serif" font-size="10" font-weight="700">92%</text>
+  <rect x="294" y="352" width="82" height="18" rx="9" fill="#22C55E" fill-opacity="0.18"/>
+  <text x="322" y="365" fill="#DCFCE7" font-family="Arial, sans-serif" font-size="10" font-weight="700">97%</text>
+  <rect x="438" y="370" width="68" height="18" rx="9" fill="#22D3EE" fill-opacity="0.16"/>
+  <text x="460" y="383" fill="#CFFAFE" font-family="Arial, sans-serif" font-size="10" font-weight="700">94%</text>
+
+  <rect x="104" y="478" width="450" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.04"/>
+  <text x="126" y="494" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="11">Face recognition active | QR fallback enabled | Session synced</text>
+
+  <rect x="600" y="118" width="224" height="404" rx="20" fill="#10192C" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="626" y="152" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Attendance summary</text>
+  <rect x="626" y="170" width="172" height="72" rx="18" fill="#22C55E" fill-opacity="0.10" stroke="#4ADE80" stroke-opacity="0.16"/>
+  <text x="650" y="198" fill="#DCFCE7" font-family="Arial, sans-serif" font-size="12">Present today</text>
+  <text x="650" y="228" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="32" font-weight="700">142</text>
+
+  <rect x="626" y="262" width="172" height="120" rx="18" fill="#FFFFFF" fill-opacity="0.04"/>
+  <text x="650" y="290" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Recognized students</text>
+  <circle cx="650" cy="316" r="5" fill="#22C55E"/>
+  <text x="664" y="320" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Aarav Patel</text>
+  <circle cx="650" cy="342" r="5" fill="#22C55E"/>
+  <text x="664" y="346" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Nina Shah</text>
+  <circle cx="650" cy="368" r="5" fill="#FBBF24"/>
+  <text x="664" y="372" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="12">Rahul Verma</text>
+
+  <rect x="626" y="400" width="172" height="88" rx="18" fill="#0EA5E9" fill-opacity="0.10" stroke="#38BDF8" stroke-opacity="0.15"/>
+  <text x="650" y="428" fill="#E0F2FE" font-family="Arial, sans-serif" font-size="12">Verification mode</text>
+  <text x="650" y="454" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="20" font-weight="700">Face + QR</text>
+  <text x="650" y="474" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Fraud prevention active</text>
+</svg>

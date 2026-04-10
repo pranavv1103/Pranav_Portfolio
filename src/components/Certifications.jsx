@@ -50,7 +50,7 @@ const colorTokens = {
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-20 bg-[#080c16] overflow-hidden">
+    <section id="certifications" className="relative py-20 bg-[#070e1c] overflow-hidden">
       {/* Dot pattern background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
       {/* Ambient orbs */}
@@ -90,7 +90,7 @@ export default function Certifications() {
                 <WaterfallItem key={category} className="h-full">
                 <SpotlightCard
                   spotlightColor={c.spotlight}
-                  className={`h-full rounded-2xl border ${c.border} ${c.hoverBorder} bg-[#0b1120]/80 backdrop-blur-sm shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300`}
+                  className={`h-full rounded-2xl border ${c.border} ${c.hoverBorder} bg-[#0e1f3a] backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-300`}
                 >
                 <motion.div
                   whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(0,0,0,0.5)' }}
@@ -115,7 +115,7 @@ export default function Certifications() {
                         <CheckCircle2 size={13} className={`${c.check} shrink-0 mt-0.5`} />
                         <div>
                           <div className="text-sm font-medium text-slate-200 leading-snug">{title}</div>
-                          <div className="text-xs text-slate-500 mt-0.5">{issuer}</div>
+                          <div className="text-xs text-slate-400 mt-0.5">{issuer}</div>
                         </div>
                       </li>
                     ))}
