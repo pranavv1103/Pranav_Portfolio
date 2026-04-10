@@ -44,8 +44,8 @@ export const experience = [
     id: 2,
     role: 'Software Developer',
     company: 'Next CloudWave Solutions',
-    location: 'Remote',
-    period: 'Prior to Aug 2024',
+    location: 'Hyderabad, India',
+    period: 'Mar 2023 – Jul 2024',
     type: 'Full-time',
     highlights: [
       'Built and maintained 20+ REST APIs across Java, Python, Spring Boot, and SQL service layers',
