@@ -29,7 +29,7 @@ export const experience = [
     role: 'Software Engineer / Graduate Assistant',
     company: 'University of Central Florida',
     location: 'Orlando, FL',
-    period: 'Aug 2024 to Present',
+    period: 'Aug 2025 – Present',
     type: 'Full-time',
     highlights: [
       'Built data processing pipelines with Python, Java, and SQL, cutting evaluation turnaround by 30%',
